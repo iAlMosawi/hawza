@@ -28,6 +28,13 @@ knowledge/output/hawza_knowledge.sqlite
 
 Only files listed in `manifest.json` with `"enabled": true` are indexed.
 
+## Current approved source
+
+The production manifest indexes `diyafa_ramadan.pdf`, the approved 145-page
+repository document **ضيافة بعين الأمين**. The generated database contains
+the source's verified page metadata and must be rebuilt whenever that document
+changes.
+
 ## Licensing
 
 Do not commit copyrighted books to a public repository unless you have permission to redistribute them. The database contains extracted source text, so the same licensing concern applies to the generated database.
