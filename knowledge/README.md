@@ -30,10 +30,10 @@ Only files listed in `manifest.json` with `"enabled": true` are indexed.
 
 ## Current approved source
 
-The production manifest indexes `diyafa_ramadan.pdf`, the approved 145-page
-repository document **ضيافة بعين الأمين**. The generated database contains
-the source's verified page metadata and must be rebuilt whenever that document
-changes.
+The production manifest indexes the approved Noor library, including
+`diyafa_ramadan.pdf` and the supplied educational, creed, fiqh, sirah, and
+Islamic-thought books. The generated database preserves verified page metadata
+and must be rebuilt whenever an approved source changes.
 
 ## Licensing
 
