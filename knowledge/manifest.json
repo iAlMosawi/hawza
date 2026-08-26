@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "chunking": {
     "target_chars": 1500,
     "overlap_chars": 220,
@@ -7,14 +7,14 @@
   },
   "sources": [
     {
-      "id": "EXAMPLE-replace-me",
-      "path": "example/replace_me.pdf",
-      "title": "REPLACE WITH APPROVED SOURCE",
-      "author": "",
-      "category": "other",
-      "enabled": false,
-      "version": "1",
-      "notes": "Add real approved sources here. Path is relative to knowledge/sources/."
+      "id": "diyafa-bi-ayn-al-amin",
+      "path": "../../diyafa_ramadan.pdf",
+      "title": "ضيافة بعين الأمين",
+      "author": "Abrar ghkh",
+      "category": "ramadan",
+      "enabled": true,
+      "version": "2026",
+      "notes": "Approved repository document. The path intentionally references the original file already stored at the repository root."
     }
   ]
 }
