@@ -47,7 +47,6 @@ class InMemoryBlobStore {
 
 // ✨ جديد: الكشف عن بيئة التشغيل
 const IS_LOCAL_DEV = process.env.NETLIFY_DEV === 'true';
-const IS_BLOBS_CONFIGURED = Boolean(process.env.NETLIFY_SITE_ID && process.env.NETLIFY_API_TOKEN);
 
 let storeFactory;
 
@@ -55,26 +54,11 @@ if (IS_LOCAL_DEV) {
     console.log('[INFO] Running in local development mode (Netlify Dev).');
     // في الوضع المحلي، نستخدم المخزن البديل دائماً
     storeFactory = (name) => new InMemoryBlobStore(name);
-} else if (IS_BLOBS_CONFIGURED) {
-    console.log('[INFO] Running on Netlify with Blobs configured.');
-    // على الخادم مع تهيئة سليمة، نستخدم Netlify Blobs
-    storeFactory = (name, config) => getStore({ name, ...config });
 } else {
-    // على الخادم ولكن التهيئة فاشلة، هذا هو مصدر الخطأ الأصلي
-    console.error('[FATAL] Netlify Blobs is not configured for this site on the server!');
-    console.error('[FATAL] Please link the project via `netlify link` and redeploy.');
-    const maintenanceApp = express();
-    maintenanceApp.use(cors());
-    maintenanceApp.use((req, res) => {
-        res.status(503).json({
-            success: false,
-            error: 'Service Unavailable: The backend data store (Netlify Blobs) is not configured. Please contact the site administrator to link the repository.'
-        });
-    });
-    // تصدير التطبيق المعطّل فوراً
-    module.exports.handler = serverless(maintenanceApp);
-    // نوقف تنفيذ باقي الملف
-    return;
+    // Netlify Functions provide the Blobs context at runtime. Requiring a
+    // personal API token here would make the production API unavailable.
+    console.log('[INFO] Running on Netlify with Blobs.');
+    storeFactory = (name, config) => getStore({ name, ...config });
 }
 
 // --- القسم 3: إعدادات التطبيق والمتغيرات الأساسية ---
