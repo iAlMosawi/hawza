@@ -1,8 +1,13 @@
 # ملف إعدادات Netlify (النسخة النهائية والمبسطة)
 
 [build]
+  command = "echo Building Functions"
   publish = "/"
   functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["express"]
 
 # ===================================================================
 # الترتيب هنا في غاية الأهمية. Netlify يقرأ القواعد من الأعلى للأسفل.
