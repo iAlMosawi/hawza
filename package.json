@@ -8,6 +8,12 @@
     "build": "echo 'Build script not necessary for this project structure.'"
   },
   "dependencies": {
-    "express": "^5.1.0"
+    "@netlify/blobs": "^9.0.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
+    "express-session": "^1.18.1",
+    "helmet": "^8.1.0",
+    "serverless-http": "^3.2.0"
   }
 }

@@ -82,6 +82,9 @@ const app = express();
 const ADMIN_USERNAME = (process.env.ADMIN_USERNAME || 'admin').trim();
 const ADMIN_PASSWORD = (process.env.ADMIN_PASSWORD || 'password').trim();
 const SESSION_SECRET = process.env.SESSION_SECRET || 'default-secret-for-local-dev';
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4.1-mini';
+const MAX_CHAT_MESSAGE_LENGTH = 2_000;
 
 if (SESSION_SECRET === 'default-secret-for-local-dev' && !IS_LOCAL_DEV) {
     throw new Error('FATAL: SESSION_SECRET environment variable must be set in production.');
@@ -174,8 +177,8 @@ app.use(session({
 }));
 
 // --- القسم 7: وسائط متخصصة ومحددات السرعة ---
-const requireAuth = (req, res, next) => { /* ... بدون تغيير ... */ };
-const loginLimiter = rateLimit({ /* ... بدون تغيير ... */ });
+let requireAuth = (req, res, next) => { /* ... بدون تغيير ... */ };
+let loginLimiter = rateLimit({ /* ... بدون تغيير ... */ });
 requireAuth = (req, res, next) => {
     if (req.session && req.session.authenticated) {
         return next();
@@ -222,6 +225,80 @@ const publicRouter = express.Router();
 publicRouter.post('/questions', async (req, res, next) => { /* ... */ });
 publicRouter.get('/answered', async (req, res, next) => { /* ... */ });
 
+const chatLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 20,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { error: 'تم تجاوز الحد المؤقت للرسائل. يرجى المحاولة لاحقًا.' }
+});
+
+const noorInstructions = `
+أنت نور الحوزة، مساعد معرفي إسلامي باللغة العربية.
+قدّم إجابات هادئة ودقيقة وفق منهج أهل البيت عليهم السلام ومصادر الشيعة الإمامية الاثني عشرية المعتمدة.
+لا تخترع نصوصًا أو إحالات أو مصادر. إذا لم تكن متأكدًا، فقل ذلك بوضوح.
+في مسائل الفقه التي تعتمد على التقليد، نبّه المستخدم إلى الرجوع لفتوى مرجعه.
+لا تقدّم فتاوى شخصية أو ادعاءات قطعية بلا مصدر، ولا تتعامل مع إجابتك كبديل عن عالمٍ مؤهل.
+اجعل الإجابة عربية واضحة وموجزة ما لم يطلب المستخدم تفصيلاً.
+`;
+
+function extractResponseText(response) {
+    return (response.output || [])
+        .flatMap(item => item.content || [])
+        .filter(content => content.type === 'output_text' && typeof content.text === 'string')
+        .map(content => content.text)
+        .join('\n')
+        .trim();
+}
+
+publicRouter.post('/chat', chatLimiter, async (req, res) => {
+    const message = typeof req.body?.message === 'string' ? req.body.message.trim() : '';
+
+    if (!message) {
+        return res.status(400).json({ error: 'الرسالة مطلوبة.' });
+    }
+    if (message.length > MAX_CHAT_MESSAGE_LENGTH) {
+        return res.status(400).json({ error: `الرسالة يجب ألا تتجاوز ${MAX_CHAT_MESSAGE_LENGTH} حرفًا.` });
+    }
+    if (!OPENAI_API_KEY) {
+        console.error('[CHAT] OPENAI_API_KEY is not configured.');
+        return res.status(503).json({ error: 'خدمة المساعد غير مهيأة حاليًا.' });
+    }
+
+    try {
+        const openAIResponse = await fetch('https://api.openai.com/v1/responses', {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${OPENAI_API_KEY}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                model: OPENAI_MODEL,
+                instructions: noorInstructions,
+                input: message,
+                max_output_tokens: 700
+            })
+        });
+
+        if (!openAIResponse.ok) {
+            console.error('[CHAT] OpenAI request failed:', openAIResponse.status, await openAIResponse.text());
+            return res.status(502).json({ error: 'تعذر الحصول على إجابة من المساعد حاليًا.' });
+        }
+
+        const data = await openAIResponse.json();
+        const answer = extractResponseText(data);
+        if (!answer) {
+            console.error('[CHAT] OpenAI response did not contain text output.');
+            return res.status(502).json({ error: 'تعذر قراءة إجابة المساعد.' });
+        }
+
+        return res.status(200).json({ answer, sources: [] });
+    } catch (error) {
+        console.error('[CHAT] Unexpected chat error:', error);
+        return res.status(502).json({ error: 'تعذر الاتصال بخدمة المساعد حاليًا.' });
+    }
+});
+
 // --- القسم 10: ربط المسارات بالتطبيق ---
 app.use('/api', publicRouter);
 app.use('/admin', adminRouter);
@@ -239,4 +316,3 @@ app.use((err, req, res, next) => {
 
 // --- التصدير النهائي ---
 module.exports.handler = serverless(app);
-
