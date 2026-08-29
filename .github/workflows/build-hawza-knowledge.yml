@@ -2,21 +2,27 @@ name: Build Hawza Knowledge Database
 
 on:
   workflow_dispatch:
-
   push:
     branches:
       - main
     paths:
-      - "knowledge/**"
+      - "knowledge/build/**"
+      - "knowledge/sources/**"
+      - "knowledge/metadata/**"
+      - "knowledge/manifest.json"
       - "book/**"
       - "*.pdf"
       - ".github/workflows/build-hawza-knowledge.yml"
+
+concurrency:
+  group: hawza-knowledge-production
+  cancel-in-progress: false
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -40,30 +46,81 @@ jobs:
           python knowledge/build/build_knowledge.py \
             --manifest knowledge/manifest.json
 
-      - name: Validate knowledge database
+      - name: Validate database
         run: |
-          python knowledge/build/validate_knowledge.py
+          python knowledge/build/validate_knowledge.py --query "التوحيد"
 
-      - name: SQLite integrity check
+      - name: Generate release metadata
+        id: metadata
+        shell: bash
         run: |
-          RESULT=$(sqlite3 knowledge/output/hawza_knowledge.sqlite \
-            "PRAGMA integrity_check;")
+          set -euo pipefail
 
-          echo "$RESULT"
+          DB="knowledge/output/hawza_knowledge.sqlite"
+          SHA256="$(sha256sum "$DB" | awk '{print $1}')"
+          SIZE="$(stat -c%s "$DB")"
+          VERSION="$(date -u +'%Y.%m.%d.%H%M%S')-${GITHUB_SHA::7}"
+          TAG="knowledge-${VERSION}"
+          UPDATED_AT="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 
-          test "$RESULT" = "ok"
+          printf '%s  %s\n' "$SHA256" "hawza_knowledge.sqlite" \
+            > knowledge/output/hawza_knowledge.sqlite.sha256
 
-      - name: Generate SHA256
-        run: |
-          cd knowledge/output
-          sha256sum hawza_knowledge.sqlite \
-            > hawza_knowledge.sqlite.sha256
+          python - <<PY
+          import json
+          from pathlib import Path
 
-      - name: Upload build artifact
+          payload = {
+              "schema": 1,
+              "version": "${VERSION}",
+              "database": "hawza_knowledge.sqlite",
+              "sha256": "${SHA256}",
+              "size": ${SIZE},
+              "updated_at": "${UPDATED_AT}",
+              "git_commit": "${GITHUB_SHA}",
+              "download_url": "https://github.com/${GITHUB_REPOSITORY}/releases/latest/download/hawza_knowledge.sqlite",
+          }
+
+          Path("knowledge/output/version.json").write_text(
+              json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: hawza-knowledge
+          name: hawza-knowledge-${{ steps.metadata.outputs.version }}
           path: |
             knowledge/output/hawza_knowledge.sqlite
             knowledge/output/hawza_knowledge.sqlite.sha256
+            knowledge/output/version.json
           if-no-files-found: error
+          retention-days: 30
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.metadata.outputs.tag }}
+          VERSION: ${{ steps.metadata.outputs.version }}
+        run: |
+          set -euo pipefail
+
+          gh release create "$TAG" \
+            knowledge/output/hawza_knowledge.sqlite \
+            knowledge/output/hawza_knowledge.sqlite.sha256 \
+            knowledge/output/version.json \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "Hawza Knowledge $VERSION" \
+            --notes "Automated validated Hawza knowledge database build from commit $GITHUB_SHA." \
+            --latest
+
+      - name: Print stable update URLs
+        run: |
+          echo "Manifest: https://github.com/${GITHUB_REPOSITORY}/releases/latest/download/version.json"
+          echo "Database: https://github.com/${GITHUB_REPOSITORY}/releases/latest/download/hawza_knowledge.sqlite"
+          echo "Checksum: https://github.com/${GITHUB_REPOSITORY}/releases/latest/download/hawza_knowledge.sqlite.sha256"
