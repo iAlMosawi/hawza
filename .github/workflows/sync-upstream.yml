@@ -1,0 +1,73 @@
+name: Check Upstream Hawza Updates
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Fetch upstream
+        run: |
+          git remote add upstream https://github.com/Kay001050/hawza.git
+          git fetch upstream main
+
+      - name: Detect upstream changes
+        id: changes
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if git merge-base --is-ancestor upstream/main HEAD; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create sync branch
+        if: steps.changes.outputs.has_changes == 'true'
+        id: branch
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          BRANCH="automation/upstream-sync-${GITHUB_RUN_ID}"
+          git checkout -b "$BRANCH"
+
+          if ! git merge --no-edit upstream/main; then
+            echo "::error::Upstream changes have merge conflicts. Manual review is required."
+            exit 1
+          fi
+
+          git push origin "$BRANCH"
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+
+      - name: Open review pull request
+        if: steps.changes.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.branch.outputs.branch }}
+        run: |
+          gh pr create \
+            --repo "$GITHUB_REPOSITORY" \
+            --base main \
+            --head "$BRANCH" \
+            --title "Sync updates from Kay001050/hawza" \
+            --body "Automated upstream synchronization. Review source/code changes before merging. Merging this PR may trigger a new production knowledge database build."
