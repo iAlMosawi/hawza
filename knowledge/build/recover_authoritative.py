@@ -37,6 +37,8 @@ class SemanticText(HTMLParser):
         self.parts: list[str] = []
         self.title = ""
         self._skip_depth = 0
+        self._main_depth = 0
+        self._capture_root_depth = 0
 
     def handle_starttag(self, tag, attrs):
         if tag in {"script", "style", "noscript"}:
@@ -48,6 +50,7 @@ class SemanticText(HTMLParser):
         if tag == "meta" and values.get("property") in {"og:title", "title"}:
             self.title = values.get("content", "")
         ident = values.get("id", "")
+        classes = set((values.get("class") or "").split())
         if self.site == "almaaref":
             if ident.startswith("page-") and ident != "page-book-description":
                 self.depth = 1
@@ -55,9 +58,17 @@ class SemanticText(HTMLParser):
                 self.depth += 1
         elif self.site == "sistani":
             if ident == "main-book-content":
-                self.depth = 1
-            elif self.depth:
-                self.depth += 1
+                self._main_depth = 1
+            elif self._main_depth:
+                self._main_depth += 1
+                # Sistani places the actual content in book-text. The parent
+                # container also contains search, pager, language, and book
+                # recommendation UI, so those nodes are intentionally not
+                # captured.
+                if "book-text" in classes:
+                    self._capture_root_depth = self._main_depth
+                elif tag == "h1":
+                    self._capture_root_depth = self._main_depth
 
     def handle_endtag(self, tag):
         if tag in {"script", "style", "noscript"} and self._skip_depth:
@@ -65,11 +76,17 @@ class SemanticText(HTMLParser):
             return
         if self._skip_depth:
             return
+        if self.site == "sistani" and self._main_depth:
+            if self._capture_root_depth == self._main_depth:
+                self._capture_root_depth = 0
+            self._main_depth -= 1
+            return
         if self.depth:
             self.depth -= 1
 
     def handle_data(self, data):
-        if self.depth and not self._skip_depth and data.strip():
+        if ((self.site == "sistani" and self._capture_root_depth and self._main_depth >= self._capture_root_depth) or
+                (self.site != "sistani" and self.depth)) and not self._skip_depth and data.strip():
             self.parts.append(data)
 
 
