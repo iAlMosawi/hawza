@@ -1,0 +1,348 @@
+{
+  "status": "20_REVIEWED_2_BLOCKED",
+  "diyafa": {
+    "status": "BLOCKED",
+    "legacy_sha256": "1ce99056750e17938ebb2475214a56b0e6054b699925cc5931f811da576a1afa",
+    "candidate_sha256": "dae41b5ca2e15147c5749e3455245b43dad124292da1a31c84caca680adb6abe",
+    "legacy_pages": 145,
+    "candidate_pages": 145,
+    "sampled_pages": [
+      {
+        "page": 1,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 1.4031,
+        "old_fingerprint": "f58b0e77bd76751d",
+        "candidate_fingerprint": "77c5a888afc0be86"
+      },
+      {
+        "page": 2,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.0,
+        "old_fingerprint": "9c4019e21adb1fe1",
+        "candidate_fingerprint": "9c4019e21adb1fe1"
+      },
+      {
+        "page": 3,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.9094,
+        "old_fingerprint": "5387254a8c5892a4",
+        "candidate_fingerprint": "6e07edfb5c80f54d"
+      },
+      {
+        "page": 5,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.0626,
+        "old_fingerprint": "b5c19372eb48ceaa",
+        "candidate_fingerprint": "999bb8661ee0d58b"
+      },
+      {
+        "page": 10,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.2464,
+        "old_fingerprint": "2b2948b36a94f62d",
+        "candidate_fingerprint": "d77b4fdc84cd4934"
+      },
+      {
+        "page": 20,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.2464,
+        "old_fingerprint": "06fd98bb97823289",
+        "candidate_fingerprint": "2f358ceb7a24d7f1"
+      },
+      {
+        "page": 30,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.3067,
+        "old_fingerprint": "9c8a4387b58fc39d",
+        "candidate_fingerprint": "d031281b7a37b7a9"
+      },
+      {
+        "page": 40,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 1.0999,
+        "old_fingerprint": "322e8f992465a804",
+        "candidate_fingerprint": "4790c5c08821a24f"
+      },
+      {
+        "page": 50,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.3067,
+        "old_fingerprint": "bf670ea309f39b78",
+        "candidate_fingerprint": "9b60357e0e866fe8"
+      },
+      {
+        "page": 60,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.3067,
+        "old_fingerprint": "ff5bee4ac20c2601",
+        "candidate_fingerprint": "662e0bceffd37fc7"
+      },
+      {
+        "page": 70,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.3329,
+        "old_fingerprint": "9e1975af074775c0",
+        "candidate_fingerprint": "3dd372ace6beccee"
+      },
+      {
+        "page": 80,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.2944,
+        "old_fingerprint": "783164a5fdde5d12",
+        "candidate_fingerprint": "ac358f7c5cf9807a"
+      },
+      {
+        "page": 90,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.3067,
+        "old_fingerprint": "86fbcd5ed63e73b5",
+        "candidate_fingerprint": "834f8aac76da3a60"
+      },
+      {
+        "page": 100,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.2947,
+        "old_fingerprint": "9e578c34890f4903",
+        "candidate_fingerprint": "f197f453fd2a9b09"
+      },
+      {
+        "page": 110,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.2947,
+        "old_fingerprint": "70cd8f11ce50b760",
+        "candidate_fingerprint": "ef0074d3c34c791f"
+      },
+      {
+        "page": 120,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.2946,
+        "old_fingerprint": "aa770552ac3e5990",
+        "candidate_fingerprint": "35b8b3e246b3249a"
+      },
+      {
+        "page": 130,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.2947,
+        "old_fingerprint": "94a4e29d0856a22d",
+        "candidate_fingerprint": "6625a4a93a697817"
+      },
+      {
+        "page": 140,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.6403,
+        "old_fingerprint": "4fda38d48c418eb2",
+        "candidate_fingerprint": "532458f69ef2826c"
+      },
+      {
+        "page": 143,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 1.6528,
+        "old_fingerprint": "1626781d828199de",
+        "candidate_fingerprint": "a54979abb3ad9e88"
+      },
+      {
+        "page": 144,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.0,
+        "old_fingerprint": "9c4019e21adb1fe1",
+        "candidate_fingerprint": "9c4019e21adb1fe1"
+      },
+      {
+        "page": 145,
+        "old_size": [
+          298,
+          422
+        ],
+        "candidate_size": [
+          298,
+          422
+        ],
+        "mean_abs_pixel_diff": 0.559,
+        "old_fingerprint": "dd538f78ad9a04b9",
+        "candidate_fingerprint": "4402b096d8c6f7ea"
+      }
+    ],
+    "sampled_page_count": 21,
+    "page_dimensions_match": true,
+    "visual_mean_diff_average": 0.4692,
+    "safe_page_text_extraction": "failed_on_candidate_pages; no text staged",
+    "equivalence_decision": "NOT_SAFE_TO_ACCEPT_FOR_TEXT_INGESTION"
+  },
+  "shirazi": {
+    "status": "BLOCKED",
+    "toc_count": null,
+    "harvested_sections": 0,
+    "missing_sections": "TOC unavailable because bootstrap timed out",
+    "network_error": "read operation timed out before CSRF/TOC"
+  },
+  "staging": {
+    "sources": 20,
+    "reviewed": 20,
+    "blocked": 2,
+    "approved": 0,
+    "chunks": 2100,
+    "fts_rows": 2100,
+    "integrity": "ok",
+    "sha256": "bb358abc4273497a3e8e6d2d62535bdf0635fd63d2bb8956c5824b650acd6aca",
+    "retrieval": {
+      "التوكل": 7,
+      "التواكل": 0,
+      "الإخلاص": 19,
+      "التقوى": 24,
+      "الإمامة": 79,
+      "أهل البيت": 122,
+      "الفقه": 101,
+      "الصلاة على محمد وآل محمد": 1,
+      "الابتلاء": 8
+    }
+  },
+  "tests": {
+    "unit": "21 passed",
+    "phase5_validation": "passed",
+    "duplicate_source_ids": 0,
+    "orphan_chunks": 0,
+    "orphan_fts": 0
+  },
+  "production_modified": false,
+  "production_deployed": false
+}
