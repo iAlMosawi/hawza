@@ -1,0 +1,33 @@
+{
+  "approved": 22,
+  "reviewed": 0,
+  "blocked": 0,
+  "approved_database": {
+    "path": "knowledge/output/hawza_knowledge_phase5_approved.sqlite",
+    "sha256": "cd27d6e0ef4e78ec9d52512f7072b7874d89f5b40073a0827c6843a07cb80417",
+    "size_bytes": 47280128,
+    "sources": 22,
+    "chunks": 3233,
+    "fts_rows": 3233,
+    "schema_version": 2,
+    "integrity": "ok"
+  },
+  "tests": {
+    "passed": 27,
+    "failed": 0
+  },
+  "library": {
+    "architecture": "complete",
+    "catalogue_verified_discovered": 0,
+    "acquired": 0,
+    "pending": 0,
+    "reviewed": 0,
+    "approved_new": 0,
+    "ocr_required": 0,
+    "duplicates": 0,
+    "ai_eligible": 0,
+    "external_limitations": "Google Drive recursive metadata access was bounded and incomplete; no fabricated records were added."
+  },
+  "production_changed": false,
+  "deployed": false
+}

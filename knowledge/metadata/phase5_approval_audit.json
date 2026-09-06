@@ -1,0 +1,33 @@
+{
+  "decision": "approved",
+  "approved_by": "human user instruction in master one-shot prompt",
+  "date": "2026-09-06",
+  "source_count": 22,
+  "previous_status": "reviewed",
+  "new_status": "approved",
+  "production_changed": false,
+  "source_ids": [
+    "dirasat-ilahiyyat",
+    "diyafa-bi-ayn-al-amin",
+    "durus-fikr-khamenei-1",
+    "durus-fikr-khamenei-2",
+    "durus-fikr-khomeini",
+    "durus-fikr-sadr",
+    "durus-sirah",
+    "durus-usul-aqidah",
+    "maaref-islam",
+    "madkhal-fiqh",
+    "madkhal-kalam",
+    "madkhal-usul",
+    "minhaj-salihin-1445",
+    "nahj-rasul",
+    "rihab-aqidah",
+    "risala-amaliyya-shirazi",
+    "risala-ilmiyya-sayyid-qaid",
+    "shakhsiyya-qiyadiyya",
+    "tabligh-dini",
+    "tarbiyah-wilaiyyah",
+    "thaqafat-intizar",
+    "wilayat-faqih"
+  ]
+}
