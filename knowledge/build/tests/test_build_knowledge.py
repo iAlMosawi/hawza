@@ -170,3 +170,25 @@ class BuildKnowledgeTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stderr)
             with sqlite3.connect(output) as connection:
                 self.assertEqual(connection.execute("SELECT review_status FROM sources WHERE id='legacy'").fetchone()[0], "legacy_trusted")
+
+    def test_empty_blocked_staging_is_only_allowed_explicitly(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            sources = root / "sources"
+            sources.mkdir()
+            (sources / "blocked.txt").write_text("unsafe source placeholder", encoding="utf-8")
+            manifest = {
+                "version": "2.0-test",
+                "phase5": {"legacy_source_ids": []},
+                "sources": [{"id": "blocked", "path": "blocked.txt", "title": "Blocked", "category": "fiqh", "review_status": "rejected", "enabled": True}],
+            }
+            manifest_path = root / "manifest.json"
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+            output = root / "phase5.sqlite"
+            result = subprocess.run([sys.executable, str(SCRIPT), "--manifest", str(manifest_path), "--sources", str(sources), "--output", str(output)], capture_output=True, text=True, check=False)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            validator = Path(__file__).resolve().parents[1] / "validate_knowledge.py"
+            rejected = subprocess.run([sys.executable, str(validator), "--db", str(output), "--require-phase5"], capture_output=True, text=True, check=False)
+            self.assertNotEqual(rejected.returncode, 0)
+            allowed = subprocess.run([sys.executable, str(validator), "--db", str(output), "--require-phase5", "--allow-empty-blocked-staging"], capture_output=True, text=True, check=False)
+            self.assertEqual(allowed.returncode, 0, allowed.stderr)

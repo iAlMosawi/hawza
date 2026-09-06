@@ -36,6 +36,11 @@ def main():
     p.add_argument("--query")
     p.add_argument("--limit", type=int, default=5)
     p.add_argument("--require-phase5", action="store_true")
+    p.add_argument(
+        "--allow-empty-blocked-staging",
+        action="store_true",
+        help="Allow a v2 audit staging DB with sources but no evidence only when all sources are blocked/rejected.",
+    )
     args = p.parse_args()
 
     path = Path(args.db)
@@ -54,7 +59,11 @@ def main():
         chunk_count = con.execute("SELECT count(*) FROM chunks").fetchone()[0]
         fts_count = con.execute("SELECT count(*) FROM chunks_fts").fetchone()[0]
 
-        if source_count < 1 or chunk_count < 1 or fts_count != chunk_count:
+        empty_blocked_staging = False
+        if args.allow_empty_blocked_staging and chunk_count == 0 and fts_count == 0 and source_count >= 1:
+            states = {row[0] for row in con.execute("SELECT DISTINCT review_status FROM sources")}
+            empty_blocked_staging = states and states <= {"pending", "reviewed", "rejected"}
+        if source_count < 1 or (chunk_count < 1 and not empty_blocked_staging) or fts_count != chunk_count:
             raise SystemExit(
                 f"Invalid counts: sources={source_count}, chunks={chunk_count}, fts={fts_count}"
             )
@@ -69,6 +78,8 @@ def main():
         print(f"[OK] sources: {source_count}")
         print(f"[OK] chunks: {chunk_count}")
         print(f"[OK] schema_version: {schema_version}")
+        if empty_blocked_staging:
+            print("[OK] empty blocked staging: no source is searchable")
 
         if schema_version >= 2:
             required = {"review_status", "quality_score", "marja", "official_source", "is_current"}
