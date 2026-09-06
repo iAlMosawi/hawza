@@ -2,25 +2,47 @@
 """Recover the official Arabic text of المسائل الإسلامية from alshirazi.org.
 
 This is an isolated Phase-5 recovery helper. It never edits or deploys the
-production database. The official library item is now server-rendered with the
-book text, so this path deliberately avoids the older dynamic TOC/CSRF reader
-and the unsafe embedded Unicode layer of the PDF.
+production database. The official library item is server-rendered with the book
+text. This path avoids the unsafe embedded Unicode layer of the old PDF.
 """
 from __future__ import annotations
 
 import argparse
+from http.cookiejar import CookieJar
 import hashlib
 from html.parser import HTMLParser
 import json
 from pathlib import Path
 import re
-from urllib.request import Request, urlopen
+from urllib.error import HTTPError, URLError
+from urllib.request import (
+    HTTPCookieProcessor,
+    Request,
+    build_opener,
+)
 
 SOURCE_ID = "masail-islamiyya-sadiq-al-shirazi"
 LEGACY_ALIAS = "risala-amaliyya-shirazi"
-OFFICIAL_URL = "https://www.alshirazi.org/library-item/203?langs=AR"
+OFFICIAL_URLS = (
+    "https://www.alshirazi.org/library-item/203?langs=AR",
+    "https://alshirazi.org/library-item/203?langs=AR",
+)
+HOME_URLS = (
+    "https://www.alshirazi.org/",
+    "https://alshirazi.org/",
+)
 START_MARKERS = ("مقدمة المسائل الاسلامية", "مقدمة المسائل الإسلامية")
 END_MARKER = "كتب ذات صلة"
+REQUIRED_SECTIONS = (
+    "أصول الدين",
+    "أحكام التقليد",
+    "أحكام الطهارة",
+    "أحكام الصلاة",
+    "أحكام الصوم",
+    "أحكام الإرث",
+    "مسائل حديثة",
+    "الفهرس",
+)
 
 
 class VisibleText(HTMLParser):
@@ -53,6 +75,7 @@ def extract_book_text(html: str) -> str:
             break
     if start is None:
         raise RuntimeError("official book start marker not found")
+
     end = None
     for index in range(start + 1, len(parts)):
         if END_MARKER in parts[index]:
@@ -60,29 +83,64 @@ def extract_book_text(html: str) -> str:
             break
     if end is None:
         raise RuntimeError("official book end marker not found; refusing partial extraction")
+
     selected = parts[start:end]
     text = "\n".join(selected).strip()
     if len(text) < 100_000:
         raise RuntimeError(f"official structured text unexpectedly short: {len(text)} chars")
-    required = ("أصول الدين", "أحكام التقليد", "أحكام الطهارة", "أحكام الصلاة", "أحكام الصوم", "أحكام الإرث")
-    missing = [marker for marker in required if marker not in text]
+
+    missing = [marker for marker in REQUIRED_SECTIONS if marker not in text]
     if missing:
         raise RuntimeError("missing expected book sections: " + ", ".join(missing))
-    forbidden = ("�", "javascript:")
+
+    forbidden = ("�", "javascript:", "document.write", "querySelector(")
     if any(marker in text for marker in forbidden):
         raise RuntimeError("unsafe/corrupt content marker in extracted official text")
     return text
 
 
-def fetch() -> bytes:
-    req = Request(OFFICIAL_URL, headers={
-        "User-Agent": "Noor-AlHawza-authoritative-recovery/1.2",
-        "Accept": "text/html,application/xhtml+xml",
+def _headers(referer: str) -> dict[str, str]:
+    return {
+        "User-Agent": (
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/140.0 Safari/537.36 Noor-AlHawza-Recovery/1.3"
+        ),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         "Accept-Language": "ar,en;q=0.7",
         "Accept-Encoding": "identity",
-    })
-    with urlopen(req, timeout=60) as response:
-        return response.read()
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache",
+        "Referer": referer,
+        "Upgrade-Insecure-Requests": "1",
+    }
+
+
+def fetch() -> tuple[str, bytes]:
+    """Fetch with a real cookie jar; alshirazi may bootstrap a session by 302."""
+    errors: list[str] = []
+    for home_url, official_url in zip(HOME_URLS, OFFICIAL_URLS):
+        jar = CookieJar()
+        opener = build_opener(HTTPCookieProcessor(jar))
+        try:
+            # Warm the official domain first so session/CSRF cookies survive the
+            # redirect chain. Failure of the warm-up is non-fatal.
+            try:
+                opener.open(Request(home_url, headers=_headers(home_url)), timeout=30).read(256)
+            except Exception:
+                pass
+
+            request = Request(official_url, headers=_headers(home_url))
+            with opener.open(request, timeout=60) as response:
+                raw = response.read()
+                final_url = response.geturl()
+            if len(raw) < 100_000:
+                raise RuntimeError(f"official response unexpectedly short: {len(raw)} bytes")
+            return final_url, raw
+        except (HTTPError, URLError, RuntimeError) as exc:
+            errors.append(f"{official_url}: {type(exc).__name__}: {exc}")
+
+    raise RuntimeError("all official Shirazi fetch routes failed: " + " | ".join(errors))
 
 
 def main() -> int:
@@ -90,13 +148,16 @@ def main() -> int:
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
-    raw = fetch()
+
+    final_url, raw = fetch()
     html = raw.decode("utf-8", errors="strict")
     text = extract_book_text(html)
+
     raw_path = args.output / "shirazi-library-item-203.html"
     text_path = args.output / f"{SOURCE_ID}.txt"
     raw_path.write_bytes(raw)
     text_path.write_text(text, encoding="utf-8")
+
     report = {
         "status": "ACQUIRED_PENDING_GATE_REVIEW",
         "source_id": SOURCE_ID,
@@ -104,11 +165,12 @@ def main() -> int:
         "canonical_title": "المسائل الإسلامية",
         "attribution": "السيد صادق الحسيني الشيرازي",
         "official_source": True,
-        "official_url": OFFICIAL_URL,
+        "requested_urls": list(OFFICIAL_URLS),
+        "final_url": final_url,
         "raw_sha256": hashlib.sha256(raw).hexdigest(),
         "text_sha256": hashlib.sha256(text.encode()).hexdigest(),
         "text_chars": len(text),
-        "method": "official_server_rendered_library_item",
+        "method": "official_server_rendered_library_item_cookie_session",
         "pdf_unicode_layer_used": False,
         "ocr_used": False,
     }
