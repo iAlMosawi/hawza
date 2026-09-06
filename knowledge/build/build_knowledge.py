@@ -407,7 +407,10 @@ def build(args: argparse.Namespace) -> None:
 
             # Pending, reviewed, and rejected sources are recorded for audit
             # but never become searchable production evidence.
-            if review_status not in PRODUCTION_REVIEW_STATES:
+            evidence_states = set(PRODUCTION_REVIEW_STATES)
+            if args.include_reviewed:
+                evidence_states.add("reviewed")
+            if review_status not in evidence_states:
                 print(f"[SKIP] {title}: review_status={review_status}")
                 continue
 
@@ -516,6 +519,11 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--sources", default="knowledge/sources")
     p.add_argument("--output", default="knowledge/output/hawza_knowledge.sqlite")
     p.add_argument("--quality-report", help="Write a Phase 5 JSON quality report here")
+    p.add_argument(
+        "--include-reviewed",
+        action="store_true",
+        help="Include explicitly reviewed sources in an isolated staging build; never use for production",
+    )
     return p.parse_args()
 
 
