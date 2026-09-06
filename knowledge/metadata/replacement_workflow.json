@@ -27,14 +27,15 @@
       "is_current": null,
       "review_status": null,
       "checksum": null,
-      "replacement_verification_status": "VERIFIED_REPLACEMENT_NOT_FOUND",
+      "replacement_verification_status": "OFFICIAL_CANDIDATE_REJECTED_TECHNICAL_QUALITY",
       "religious_risk_level": 3,
       "released_chunk_contribution": 108,
       "corruption_percentage": 100.0,
       "source_status": "NEEDS_REPLACEMENT_SOURCE",
       "notes": "User-supplied approved source.",
-      "identity_verification_status": "manifest_identity_conflict",
-      "acquisition_report": "knowledge/reports/phase5_3_risala_amaliyya_shirazi_acquisition.json"
+      "identity_verification_status": "verified_official_same_work_manifest_identity_incorrect",
+      "recommended_canonical_source_id": "masail-islamiyya-sadiq-al-shirazi",
+      "acquisition_report": "knowledge/reports/phase5_4_masail_islamiyya_official_validation.json"
     },
     {
       "priority": 2,

@@ -16,9 +16,10 @@ TOP_PRIORITY = ["risala-amaliyya-shirazi", "risala-ilmiyya-sayyid-qaid"]
 # These are evidence-backed acquisition outcomes, not religious review fields.
 ACQUISITION_OUTCOMES = {
     "risala-amaliyya-shirazi": {
-        "replacement_verification_status": "VERIFIED_REPLACEMENT_NOT_FOUND",
-        "identity_verification_status": "manifest_identity_conflict",
-        "acquisition_report": "knowledge/reports/phase5_3_risala_amaliyya_shirazi_acquisition.json",
+        "replacement_verification_status": "OFFICIAL_CANDIDATE_REJECTED_TECHNICAL_QUALITY",
+        "identity_verification_status": "verified_official_same_work_manifest_identity_incorrect",
+        "recommended_canonical_source_id": "masail-islamiyya-sadiq-al-shirazi",
+        "acquisition_report": "knowledge/reports/phase5_4_masail_islamiyya_official_validation.json",
     },
 }
 
