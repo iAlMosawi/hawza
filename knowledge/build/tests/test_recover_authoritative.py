@@ -11,6 +11,11 @@ spec.loader.exec_module(recover)
 
 
 class SistaniExpansionTests(unittest.TestCase):
+    def test_sistani_parser_excludes_script_content(self):
+        parser = recover.SemanticText("sistani")
+        parser.feed('<div id="main-book-content"><p>الحكم الشرعي</p><script>var branch_id = 1</script></div>')
+        self.assertEqual(parser.parts, ["الحكم الشرعي"])
+
     def test_collects_only_same_book_sections_sorted_and_deduplicated(self):
         raw = b'''<html><body>
         <a href="/arabic/book/23720/4744/">late</a>

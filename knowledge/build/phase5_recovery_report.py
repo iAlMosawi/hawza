@@ -18,7 +18,7 @@ def counts(db: Path) -> dict:
             "fts_rows": con.execute("select count(*) from chunks_fts").fetchone()[0],
             "search": {
                 q: con.execute("select count(*) from chunks_fts where chunks_fts match ?", (q,)).fetchone()[0]
-                for q in ("التوكل", "الإمامة", "أهل البيت", "الفقه")
+                for q in ("التوكل", "الإمامة", "أهل البيت", "الفقه", "التقوى", "الإخلاص")
             },
             "integrity": con.execute("pragma integrity_check").fetchone()[0],
         }
@@ -64,6 +64,7 @@ def main() -> None:
             "text_sha256": r.get("text_sha256"),
             "error": r.get("error"),
             "identity_review": "human confirmation required before approval" if r.get("text_file") else "blocked",
+            "approval_candidate_class": "B_technically_clean_human_confirmation_required" if r.get("text_file") else "C_blocked_or_rejected",
         })
 
     out = {

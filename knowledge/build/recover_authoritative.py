@@ -36,8 +36,14 @@ class SemanticText(HTMLParser):
         self.depth = 0
         self.parts: list[str] = []
         self.title = ""
+        self._skip_depth = 0
 
     def handle_starttag(self, tag, attrs):
+        if tag in {"script", "style", "noscript"}:
+            self._skip_depth += 1
+            return
+        if self._skip_depth:
+            return
         values = dict(attrs)
         if tag == "meta" and values.get("property") in {"og:title", "title"}:
             self.title = values.get("content", "")
@@ -54,11 +60,16 @@ class SemanticText(HTMLParser):
                 self.depth += 1
 
     def handle_endtag(self, tag):
+        if tag in {"script", "style", "noscript"} and self._skip_depth:
+            self._skip_depth -= 1
+            return
+        if self._skip_depth:
+            return
         if self.depth:
             self.depth -= 1
 
     def handle_data(self, data):
-        if self.depth and data.strip():
+        if self.depth and not self._skip_depth and data.strip():
             self.parts.append(data)
 
 

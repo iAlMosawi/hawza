@@ -54,6 +54,11 @@ _BIDI_OR_INVISIBLE = frozenset({
     "\u202c", "\u202d", "\u202e", "\u2066", "\u2067", "\u2068", "\u2069",
     "\ufeff",
 })
+_WEB_ARTIFACT = re.compile(
+    r"(?:\bvar\s+[A-Za-z_$]|\b(?:let|const)\s+[A-Za-z_$]|window\.(?:jQuery|\$)|"
+    r"document\.write|\b(?:function|onclick|querySelector)\s*\(|<\s*/?script\b)",
+    re.IGNORECASE,
+)
 
 
 def utc_now() -> str:
@@ -104,6 +109,8 @@ def corruption_reasons(text: str, *, minimum_chars: int = 80) -> list[str]:
         reasons.append("malformed_brace_or_pipe")
     if any(char in _BIDI_OR_INVISIBLE for char in value):
         reasons.append("bidi_or_invisible_artifact")
+    if _WEB_ARTIFACT.search(value):
+        reasons.append("website_or_javascript_artifact")
     if _EXCESSIVE_GARBAGE.search(value):
         reasons.append("excessive_punctuation_garbage")
     if _MALFORMED_SYMBOL.search(value):

@@ -7,7 +7,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from phase5 import corruption_reasons
+from phase5 import corruption_reasons, passage_quality
 
 
 SCRIPT = Path(__file__).resolve().parents[1] / "build_knowledge.py"
@@ -39,6 +39,11 @@ class BuildKnowledgeTests(unittest.TestCase):
         text = "المسألة ٣١٠: نص عربي سليم ومنظم. " * 8
         self.assertNotIn("arabic_embedded_digit", corruption_reasons(text))
         self.assertIn("arabic_embedded_digit", corruption_reasons("هذا الأ6سباب مثال. " * 8))
+
+    def test_website_and_javascript_artifacts_are_rejected(self):
+        quality, reasons = passage_quality("نص عربي صالح var branch_id = 1 window.jQuery document.write")
+        self.assertLess(quality, 100)
+        self.assertIn("website_or_javascript_artifact", reasons)
 
     def test_builds_searchable_database_from_reviewed_chunk(self):
         with tempfile.TemporaryDirectory() as temporary_directory:
