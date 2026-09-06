@@ -1,6 +1,6 @@
 {
-  "override_version": 1,
-  "reason": "Resolve authoritative item URLs discovered after the first recovery run without rewriting the audited base registry.",
+  "override_version": 2,
+  "reason": "Resolve authoritative item URLs and blocked-source identities discovered after corpus recovery without rewriting the audited base registry.",
   "sources": [
     {
       "source_id": "durus-fikr-khamenei-1",
@@ -21,16 +21,42 @@
       "identity_note": "Official Maaref item identifies this as the second volume of the same series."
     },
     {
+      "source_id": "diyafa-bi-ayn-al-amin",
+      "status": "identity_and_publication_provenance_verified_content_equivalence_pending",
+      "canonical_title": "ضيافة بعين الأمين",
+      "author_or_institution": "نور الحوزة / خدام نور الحوزة",
+      "public_library_url": "https://www.noor-book.com/كتاب-ضيافة-بعين-الأمين-pdf",
+      "public_pdf_url": "https://ahl-albait.com/wp-content/uploads/2026/02/ضيافةٌ-بعينِ-الامين.pdf",
+      "formats": ["pdf"],
+      "recommended_ingestion": "verify_legacy_pdf_against_publication_front_matter_then_clean_source",
+      "identity_note": "Public copies identify نور الحوزة as author/publisher and include an explicit publication permission from خدام نور الحوزة. Remove the unverified legacy author string 'Abrar ghkh'. Do not promote to approved until the repository PDF is content-equivalence checked against the verified publication copy and passes the normal corruption gates."
+    },
+    {
       "source_id": "risala-ilmiyya-sayyid-qaid",
-      "status": "authoritative_structured_html_candidate",
+      "status": "official_identity_verified_structured_html_acquisition_pending",
       "canonical_title": "أجوبة الاستفتاءات",
       "attribution": "السيد علي الحسيني الخامنئي",
+      "marja": "السيد علي الحسيني الخامنئي",
       "official_source": true,
-      "is_current": null,
-      "reader_url": "https://www.leader.ir/ar/book/14/اجوبة-الإستفتاءات",
-      "formats": ["html"],
-      "recommended_ingestion": "official_html_first",
-      "identity_note": "Official Leader.ir library page; source remains reviewed pending human metadata approval."
+      "official_reader_url": "https://www.leader.ir/ar/book/14/اجوبة-الإستفتاءات",
+      "formats": ["html", "epub", "pdf"],
+      "recommended_ingestion": "official_structured_html_first",
+      "identity_note": "Official Leader.ir structured book content; source remains reviewed pending human metadata approval."
+    },
+    {
+      "source_id": "risala-amaliyya-shirazi",
+      "recommended_canonical_source_id": "masail-islamiyya-sadiq-al-shirazi",
+      "legacy_alias": "risala-amaliyya-shirazi",
+      "status": "official_identity_verified_specialized_reader_harvest_required",
+      "canonical_title": "المسائل الإسلامية",
+      "attribution": "السيد صادق الحسيني الشيرازي",
+      "official_source": true,
+      "official_reader_url": "https://www.alshirazi.org/library-htmlItem/203?langs=AR",
+      "official_pdf_url": "https://alshirazi.org/data/library/pdf/1-1680299880-resaleh-web.pdf",
+      "official_section_endpoint": "https://www.alshirazi.org/esteftatreatiseBook",
+      "formats": ["html", "pdf"],
+      "recommended_ingestion": "specialized_official_reader_harvest",
+      "identity_note": "Identity is resolved. Use the existing resumable official_reader_harvest.py against the official 532-entry reader. Never ingest the unsafe embedded Unicode layer of the PDF and never repair sacred/fiqh text heuristically."
     }
   ]
 }
