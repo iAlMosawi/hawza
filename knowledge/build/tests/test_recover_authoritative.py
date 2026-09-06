@@ -1,10 +1,12 @@
 import importlib.util
 from pathlib import Path
 import unittest
+import sys
 
 MODULE = Path(__file__).resolve().parents[1] / "recover_authoritative.py"
 spec = importlib.util.spec_from_file_location("recover_authoritative", MODULE)
 recover = importlib.util.module_from_spec(spec)
+sys.modules[spec.name] = recover
 spec.loader.exec_module(recover)
 
 
