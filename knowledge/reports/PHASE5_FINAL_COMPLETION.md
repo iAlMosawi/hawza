@@ -42,7 +42,7 @@ reviewed candidate contains all 22 sources:
 ## Staging database
 
 Path: `knowledge/output/phase5_22_reviewed_staging_20260906.sqlite`  
-Size: 5,109,760 bytes  
+Size: 47,280,128 bytes  
 Sources: 22  
 Chunks: 3,233  
 FTS rows: 3,233  
@@ -64,4 +64,3 @@ FTS retrieval returned evidence for: التوكل (11), الإخلاص (24), ا�
 مرجع التقليد (4). The exact term التواكل returned 0 direct FTS rows and must
 remain subject to the existing insufficient-evidence behavior rather than being
 filled from unsupported model memory. No production answer API was invoked.
-
