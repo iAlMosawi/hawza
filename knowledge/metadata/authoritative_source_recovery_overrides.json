@@ -1,0 +1,24 @@
+{
+  "override_version": 1,
+  "reason": "Resolve authoritative item URLs discovered after the first recovery run without rewriting the audited base registry.",
+  "sources": [
+    {
+      "source_id": "durus-fikr-khamenei-1",
+      "status": "authoritative_digital_candidate",
+      "source_url": "https://books.almaaref.org/book.php?id=2619",
+      "reader_url": "https://books.almaaref.org/view.php?id=2619",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "official_html_first",
+      "identity_note": "Official Maaref item identifies this as the first volume of the same series."
+    },
+    {
+      "source_id": "durus-fikr-khamenei-2",
+      "status": "authoritative_digital_candidate",
+      "source_url": "https://books.almaaref.org/book.php?id=2620",
+      "reader_url": "https://books.almaaref.org/view.php?id=2620",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "official_html_first",
+      "identity_note": "Official Maaref item identifies this as the second volume of the same series."
+    }
+  ]
+}
