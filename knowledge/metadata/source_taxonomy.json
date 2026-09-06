@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "categories": [
+    "quran-tafsir",
+    "hadith",
+    "aqeedah",
+    "imamate",
+    "ahl-al-bayt",
+    "seerah",
+    "karbala",
+    "ashura",
+    "arbaeen",
+    "ethics",
+    "spirituality",
+    "dua-ziyarat",
+    "history",
+    "hawza",
+    "fiqh",
+    "marja-specific",
+    "bahraini-shia-heritage",
+    "ramadan",
+    "usul",
+    "kalam",
+    "mahdawiyyah",
+    "tabligh",
+    "islamic-thought",
+    "wilayah",
+    "other"
+  ],
+  "review_statuses": [
+    "legacy_trusted",
+    "pending",
+    "reviewed",
+    "approved",
+    "rejected"
+  ],
+  "production_review_statuses": [
+    "legacy_trusted",
+    "approved"
+  ],
+  "notes": "Technical metadata does not establish religious authority. official_source, is_current, marja, and approved status require human review."
+}

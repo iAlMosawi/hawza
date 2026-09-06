@@ -28,6 +28,24 @@ knowledge/output/hawza_knowledge.sqlite
 
 Only files listed in `manifest.json` with `"enabled": true` are indexed.
 
+## Phase 5 review and quality gates
+
+The builder now creates schema v2 databases that are backward-compatible with
+the v1 iOS and server readers. Existing released v1 sources remain
+`legacy_trusted`; new sources are `pending` unless a human reviewer explicitly
+approves them. Corrupt extraction is rejected rather than repaired by guesswork.
+
+Each build writes a JSON quality report beside the database. Validate a new
+database before release:
+
+```bash
+python knowledge/build/validate_knowledge.py \
+  --db /tmp/hawza_knowledge.sqlite --require-phase5
+```
+
+See [PHASE5_OPERATIONS.md](PHASE5_OPERATIONS.md) for staged deployment,
+rollback, and the remaining human-review work.
+
 ## Current approved source
 
 The production manifest indexes the approved Noor library, including

@@ -18,6 +18,7 @@ Optional:
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 import hashlib
 import html
 from html.parser import HTMLParser
@@ -26,8 +27,22 @@ from pathlib import Path
 import re
 import sqlite3
 import sys
+import tempfile
 import unicodedata
 from typing import Iterable, Iterator, Optional
+
+from phase5 import (
+    PRODUCTION_REVIEW_STATES,
+    QUALITY_REPORT_VERSION,
+    SCHEMA_VERSION,
+    corruption_reasons,
+    fresh_quality_report,
+    json_ready_report,
+    normalize_category,
+    passage_quality,
+    utc_now,
+    validate_source_metadata,
+)
 
 try:
     import fitz  # PyMuPDF
@@ -56,7 +71,15 @@ class TextHTMLParser(HTMLParser):
 
 def clean_text(value: str) -> str:
     value = html.unescape(value)
+    value = unicodedata.normalize("NFKC", value)
     value = value.replace("\u00ad", "")
+    # PDF extractors can emit form-feed and other non-content separators.
+    # Removing those control characters is not textual reconstruction; the
+    # substantive corruption checks run later on the retained evidence.
+    value = "".join(
+        char for char in value
+        if char in "\n\t" or unicodedata.category(char) not in {"Cc", "Cs"}
+    )
     value = value.replace("\r\n", "\n").replace("\r", "\n")
     lines = []
     for line in value.splitlines():
@@ -233,7 +256,18 @@ CREATE TABLE sources (
     category TEXT NOT NULL DEFAULT 'other',
     version TEXT NOT NULL DEFAULT '',
     notes TEXT NOT NULL DEFAULT '',
-    sha256 TEXT NOT NULL
+    sha256 TEXT NOT NULL,
+    subcategory TEXT,
+    edition TEXT,
+    language TEXT,
+    marja TEXT,
+    official_source INTEGER,
+    is_current INTEGER,
+    review_status TEXT NOT NULL DEFAULT 'pending',
+    quality_score REAL,
+    created_at TEXT,
+    updated_at TEXT,
+    CHECK (review_status IN ('legacy_trusted', 'pending', 'reviewed', 'approved', 'rejected'))
 );
 
 CREATE TABLE chunks (
@@ -245,6 +279,7 @@ CREATE TABLE chunks (
     topic TEXT,
     text TEXT NOT NULL,
     normalized_text TEXT NOT NULL,
+    quality_score REAL,
     UNIQUE(source_id, chunk_index)
 );
 
@@ -266,6 +301,10 @@ CREATE TABLE build_meta (
 
 CREATE INDEX idx_chunks_source ON chunks(source_id);
 CREATE INDEX idx_chunks_page ON chunks(page);
+CREATE INDEX idx_sources_category ON sources(category);
+CREATE INDEX idx_sources_review_status ON sources(review_status);
+CREATE INDEX idx_sources_marja ON sources(marja);
+CREATE INDEX idx_sources_current ON sources(is_current);
 """
 
 
@@ -296,10 +335,26 @@ def build(args: argparse.Namespace) -> None:
         )
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    if output_path.exists():
-        output_path.unlink()
-
-    con = sqlite3.connect(output_path)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=output_path.name + ".building-",
+        suffix=".sqlite",
+        dir=output_path.parent,
+    )
+    # SQLite can initialise a new schema in this unique empty staging file.
+    # Do not alter any pre-existing build artifact while preparing a release.
+    temporary_output = Path(temporary_name)
+    import os
+    os.close(descriptor)
+    # Build into a sibling file.  A failed build never damages the current
+    # known-good database; a successful build is atomically swapped at the end.
+    phase5_manifest = manifest.get("phase5")
+    legacy_source_ids = set((phase5_manifest or {}).get("legacy_source_ids", []))
+    # A v1 manifest describes only released sources, so it remains readable as
+    # legacy trusted.  Once a manifest opts into Phase 5, every newly added
+    # source must explicitly pass review or it remains pending.
+    legacy_manifest = phase5_manifest is None
+    report = fresh_quality_report()
+    con = sqlite3.connect(temporary_output)
     try:
         con.executescript(SCHEMA)
         total_chunks = 0
@@ -317,25 +372,54 @@ def build(args: argparse.Namespace) -> None:
                 )
 
             sid = str(source["id"])
+            review_status = validate_source_metadata(
+                source,
+                legacy=legacy_manifest or sid in legacy_source_ids,
+            )
             title = str(source["title"])
             author = str(source.get("author", ""))
-            category = str(source.get("category", "other"))
+            category = normalize_category(source.get("category", "other"))
             version = str(source.get("version", ""))
             notes = str(source.get("notes", ""))
             sha = file_sha256(src_path)
+            timestamp = utc_now()
 
             con.execute(
                 """
                 INSERT INTO sources
-                (id, path, title, author, category, version, notes, sha256)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                (id, path, title, author, category, version, notes, sha256,
+                 subcategory, edition, language, marja, official_source,
+                 is_current, review_status, quality_score, created_at, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
-                (sid, source["path"], title, author, category, version, notes, sha),
+                (
+                    sid, source["path"], title, author, category, version, notes, sha,
+                    source.get("subcategory"), source.get("edition"), source.get("language"),
+                    source.get("marja"), source.get("official_source"), source.get("is_current"),
+                    review_status, None, timestamp, timestamp,
+                ),
             )
 
+            report["sources"][review_status] += 1
+            report["categories"][category] += 1
+            if source.get("marja"):
+                report["marja_sources"][str(source["marja"])] += 1
+
+            # Pending, reviewed, and rejected sources are recorded for audit
+            # but never become searchable production evidence.
+            if review_status not in PRODUCTION_REVIEW_STATES:
+                print(f"[SKIP] {title}: review_status={review_status}")
+                continue
+
             chunk_index = 0
+            source_quality_scores = []
             for page, block in extract_source(src_path):
                 for piece in paragraph_chunks(block, target, overlap, min_chars):
+                    quality, reasons = passage_quality(piece)
+                    if reasons:
+                        report["chunks"]["rejected"] += 1
+                        report["corruption"].update(reasons)
+                        continue
                     cid = stable_id(sid, str(page or 0), str(chunk_index), piece[:200])
                     normalized = normalize_for_search(piece)
                     chapter = source.get("chapter")
@@ -344,12 +428,12 @@ def build(args: argparse.Namespace) -> None:
                     con.execute(
                         """
                         INSERT INTO chunks
-                        (id, source_id, chunk_index, page, chapter, topic, text, normalized_text)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                        (id, source_id, chunk_index, page, chapter, topic, text, normalized_text, quality_score)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                         """,
                         (
                             cid, sid, chunk_index, page,
-                            chapter, topic, piece, normalized
+                            chapter, topic, piece, normalized, quality
                         ),
                     )
                     con.execute(
@@ -364,18 +448,42 @@ def build(args: argparse.Namespace) -> None:
                     )
                     chunk_index += 1
                     total_chunks += 1
+                    source_quality_scores.append(quality)
+                    report["chunks"]["usable"] += 1
 
             if chunk_index == 0:
-                raise RuntimeError(f"No extractable text found in source: {src_path}")
+                # Legacy sources remain visible in metadata for gradual human
+                # review, but unsafe extraction must not become evidence.  An
+                # explicitly approved source failing this gate is a release
+                # failure because it was expected to provide production text.
+                report["sources"]["technical_blocked"] += 1
+                con.execute(
+                    "UPDATE sources SET quality_score = 0 WHERE id = ?",
+                    (sid,),
+                )
+                if review_status == "approved":
+                    raise RuntimeError(f"No usable, safe text found in approved source: {src_path}")
+                print(f"[BLOCKED] {title}: no usable safe extraction; human review required")
+                continue
+
+            con.execute(
+                "UPDATE sources SET quality_score = ? WHERE id = ?",
+                (sum(source_quality_scores) / len(source_quality_scores), sid),
+            )
 
             print(f"[OK] {title}: {chunk_index} chunks")
 
         build_meta = {
             "manifest_version": str(manifest.get("version", "unknown")),
+            "knowledge_version": str(manifest.get("knowledge_version", manifest.get("version", "unknown"))),
+            "build_timestamp": utc_now(),
             "source_count": str(len(enabled_sources)),
             "chunk_count": str(total_chunks),
-            "schema_version": "1",
+            "schema_version": str(SCHEMA_VERSION),
+            "quality_report_version": str(QUALITY_REPORT_VERSION),
         }
+        for state in ("legacy_trusted", "pending", "reviewed", "approved", "rejected"):
+            build_meta[f"{state}_source_count"] = str(report["sources"][state])
         con.executemany(
             "INSERT INTO build_meta(key, value) VALUES (?, ?)",
             build_meta.items(),
@@ -391,9 +499,15 @@ def build(args: argparse.Namespace) -> None:
     finally:
         con.close()
 
+    report_path = Path(args.quality_report) if args.quality_report else output_path.with_suffix(".quality.json")
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text(json.dumps(json_ready_report(report), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    temporary_output.replace(output_path)
+
     print(f"\nBuilt: {output_path}")
     print(f"Sources: {len(enabled_sources)}")
     print(f"Chunks: {total_chunks}")
+    print(f"Quality report: {report_path}")
 
 
 def parse_args() -> argparse.Namespace:
@@ -401,6 +515,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--manifest", default="knowledge/manifest.json")
     p.add_argument("--sources", default="knowledge/sources")
     p.add_argument("--output", default="knowledge/output/hawza_knowledge.sqlite")
+    p.add_argument("--quality-report", help="Write a Phase 5 JSON quality report here")
     return p.parse_args()
 
 
