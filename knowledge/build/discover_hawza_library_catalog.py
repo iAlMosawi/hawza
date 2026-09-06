@@ -17,6 +17,7 @@ from urllib.parse import urljoin, urlparse
 from urllib.request import Request, urlopen
 
 DEFAULT_URL = "https://hawza.netlify.app/book/"
+PUBLIC_ORIGIN = "https://hawza.netlify.app"
 
 
 class Scripts(HTMLParser):
@@ -36,6 +37,10 @@ def fetch(url: str) -> bytes:
         "User-Agent": "Noor-AlHawza-library-catalog-discovery/1.0",
         "Accept": "text/html,application/javascript,text/javascript,*/*;q=0.5",
         "Accept-Encoding": "identity",
+        # Match the public frontend's browser context. Some Google APIs reject
+        # the same public key when these referrer headers are omitted.
+        "Referer": DEFAULT_URL,
+        "Origin": PUBLIC_ORIGIN,
     })
     with urlopen(request, timeout=45) as response:
         return response.read()

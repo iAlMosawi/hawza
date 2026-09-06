@@ -1,0 +1,16 @@
+{
+  "source_library": "https://hawza.netlify.app/book/",
+  "catalogue_endpoint": "Google Drive API v3 configured by book/index.html",
+  "metadata_only": true,
+  "status": "partial_access_timeout",
+  "book_count": 0,
+  "folder_count": 0,
+  "books": [],
+  "folders": [],
+  "errors": [
+    "Recursive public Drive enumeration exceeded bounded request time before a complete catalogue could be written."
+  ],
+  "review_status": "pending",
+  "provenance_status": "unverified",
+  "ai_evidence_eligible": false
+}

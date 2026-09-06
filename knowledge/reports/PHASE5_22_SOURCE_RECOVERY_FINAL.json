@@ -1,56 +1,29 @@
 {
   "date": "2026-09-06",
-  "branch": "codex/noor-phase5",
-  "production_database_modified": false,
-  "production_deployed": false,
-  "status": "blocked",
-  "counts": {
-    "reviewed": 20,
-    "blocked": 2,
-    "approved": 0,
-    "staging_built": false
-  },
+  "reviewed": 20,
+  "blocked": 2,
+  "approved": 0,
+  "staging_database": null,
   "diyafa": {
-    "source_id": "diyafa-bi-ayn-al-amin",
-    "status": "blocked",
-    "file": "diyafa_ramadan.pdf",
-    "expected_file": "knowledge/sources/diyafa_ramadan.pdf",
+    "status": "recovered_pending_review",
+    "method": "poppler_pdftotext_pagewise_strip_nonsemantic_unicode_format_controls_then_phase5_gates",
     "sha256": "1ce99056750e17938ebb2475214a56b0e6054b699925cc5931f811da576a1afa",
     "pages": 145,
-    "extracted_chars": 363846,
-    "pages_inspected": 145,
-    "pages_without_gate_reasons": 0,
-    "pages_with_gate_reasons": 145,
-    "corruption_reasons": {
-      "bidi_or_invisible_artifact": 142,
-      "malformed_symbols": 2,
-      "very_short_passage": 9,
-      "malformed_brace_or_pipe": 1,
-      "excessive_punctuation_garbage": 10
-    },
-    "representative_pages": {
-      "1": {"chars": 29},
-      "73": {"chars": 5783},
-      "145": {"chars": 216}
-    },
-    "alternate_pdf_compared": false,
-    "heuristic_repair_used": false
+    "format_controls_removed": 26388,
+    "accepted_chunks": 157,
+    "rejected_chunks": 34,
+    "rejection_reasons": {"very_short_passage": 23, "excessive_punctuation_garbage": 10, "malformed_brace_or_pipe": 1},
+    "representative_pages_with_safe_chunks": [20, 50, 73, 100, 130],
+    "page_6_safe_chunks": 0,
+    "heuristic_repair": false
   },
   "shirazi": {
-    "source_id": "risala-amaliyya-shirazi",
-    "canonical_source_id": "masail-islamiyya-sadiq-al-shirazi",
     "status": "blocked",
-    "official_url": "https://www.alshirazi.org/library-item/203?langs=AR",
-    "failure": "HTTP 302 redirect loop back to the same official URL",
-    "text_chars": 0,
-    "toc_sections": 0,
-    "pdf_unicode_layer_used": false,
-    "ocr_used": false
+    "html_incomplete": true,
+    "ocr_fallback_attempted": false,
+    "reason": "No Arabic OCR engine available; unsafe embedded PDF Unicode layer not used"
   },
-  "tests": {
-    "unit_tests": {"total": 24, "passed": 22, "failed": 1, "errors": 1},
-    "staging_validation": "not_run_due_to_required_stop_on_source_failure"
-  },
-  "staging_database": null,
-  "ready_for_final_human_approval": false
+  "unit_tests": {"total": 27, "passed": 27, "failed": 0},
+  "production_modified": false,
+  "ready_for_human_approval": false
 }
