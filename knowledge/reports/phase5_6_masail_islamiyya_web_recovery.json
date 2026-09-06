@@ -1,0 +1,48 @@
+{
+  "phase": "5.6",
+  "status": "OFFICIAL_READER_FOUND_VALIDATION_INCOMPLETE",
+  "scope": "masail-islamiyya-sadiq-al-shirazi",
+  "legacy_alias": "risala-amaliyya-shirazi",
+  "identity": {
+    "title": "المسائل الإسلامية",
+    "attribution": "السيد صادق الحسيني الشيرازي",
+    "official_library_item": "https://www.alshirazi.org/library-item/203?langs=AR",
+    "official_reader": "https://www.alshirazi.org/library-htmlItem/203?langs=AR"
+  },
+  "reader_architecture": {
+    "page_type": "server-rendered HTML reader with dynamic section loading",
+    "toc_entries_observed": 532,
+    "content_endpoint": "https://www.alshirazi.org/esteftatreatiseBook",
+    "method": "POST",
+    "parameters": ["itemId", "langs", "catIdCur", "ShareTreatiseRoot", "_token"],
+    "section_identifiers": "HTML span.acar_span rel values; parent section IDs are embedded in nested li.dropdown anchors",
+    "response_format": "HTML fragment inserted into #treatiseResults",
+    "authentication": "No login was required for the public reader observed",
+    "csrf": "The public page provides a CSRF token required by the reader request",
+    "pagination": "Section navigation is represented by the embedded table of contents; no separate public pagination API was identified"
+  },
+  "redirect_diagnosis": {
+    "library_item_direct_request": "Automated curl follows a www canonical redirect loop",
+    "reader_route": "The public reader route loads in the browser and exposes the table of contents",
+    "likely_boundary": "The redirect behavior is host/canonical-routing specific; no authentication or anti-bot bypass was attempted"
+  },
+  "verified_observations": {
+    "library_identity": "The official library page identifies the book as المسائل الاسلامية and publisher as مكتب المرجع الشيرازي",
+    "reader_structure": "The reader exposes مقدمة المسائل الاسلامية, اصول الدين, فروع الدين, الاخلاق والآداب الاسلامية, and المسائل الاسلامية sections",
+    "first_content_sample": "Selecting the public introduction returns HTML Arabic paragraphs beginning with بسم اللّه الرّحمن الرّحيم and the introduction text",
+    "fiqh_topics_observed": ["أحكام التقليد", "أحكام الطهارة", "الوضوء", "أحكام الجنابة", "التيمم", "أحكام الصلاة", "أحكام الزكاة", "أحكام الحج", "المسائل الحديثة"]
+  },
+  "quality_validation": {
+    "phase5_gates_run_on_full_web_corpus": false,
+    "25_passage_pdf_cross_check": "not completed",
+    "reason": "The browser session repeatedly timed out while expanding nested reader sections; no source text was accepted based on partial observation",
+    "heuristic_repair": false,
+    "source_added_to_staging": false,
+    "source_added_to_production": false
+  },
+  "decision": {
+    "official_reader_candidate": "YES",
+    "safe_replacement_accepted": "NO",
+    "next_step": "Build a bounded, read-only harvester for the public reader endpoint, collect 25+ cross-check passages across the book, run unchanged Phase 5 gates, then build an isolated source-only database if and only if the complete corpus passes."
+  }
+}
