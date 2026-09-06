@@ -1,0 +1,51 @@
+{
+  "phase": "5.3",
+  "source_id": "risala-amaliyya-shirazi",
+  "target_identity": {
+    "manifest_title": "الرسالة العملية للسيد رضا الشيرازي",
+    "manifest_author": "السيد رضا الشيرازي",
+    "category": "fiqh"
+  },
+  "current_file": {
+    "path": "knowledge/sources/alresala_alamaleia_alshirazi.pdf",
+    "sha256": "4d713eaa7fcb726eda8abae9f6b8abf99c96c31c138bff0201af0b0f2eb19cc7",
+    "page_count": 668,
+    "released_chunk_contribution": 108,
+    "title_page_observation": "المسائل الإسلامية؛ مطابقة لفتاوى سماحة آية الله العظمى السيد صادق الحسيني الشيرازي",
+    "pdf_metadata": {
+      "title": "السيد رضا الشيرازي",
+      "author": "shafaee",
+      "creator": "Microsoft Word 2010",
+      "producer": "iLovePDF"
+    },
+    "identity_match": false,
+    "quality_status": "NEEDS_REPLACEMENT_SOURCE"
+  },
+  "candidates": [
+    {
+      "name": "Downloads duplicate",
+      "path": "/Users/almosawi/Downloads/AlResala AlAmaleia - AlShirazi.pdf",
+      "sha256": "4d713eaa7fcb726eda8abae9f6b8abf99c96c31c138bff0201af0b0f2eb19cc7",
+      "result": "rejected",
+      "reason": "Exact duplicate of the current corrupt file."
+    },
+    {
+      "name": "alshirazi.org resaleh-web.pdf",
+      "url": "https://alshirazi.org/data/library/pdf/1-1680299880-resaleh-web.pdf",
+      "result": "rejected_without_download",
+      "reason": "Official-domain search preview identifies a different work: المسائل الإسلامية associated with السيد محمد الحسيني الشيرازي and publisher additions from السيد صادق الحسيني الشيرازي; it is not verified as the requested work by السيد رضا الشيرازي."
+    }
+  ],
+  "replacement_verification_status": "VERIFIED_REPLACEMENT_NOT_FOUND",
+  "staging_eligible": false,
+  "metadata_requiring_human_confirmation": [
+    "Whether the manifest target title/author is correct or should be corrected to match the current title page",
+    "Exact edition/version and publisher of the intended work",
+    "Provenance of a verified replacement",
+    "marja",
+    "official_source",
+    "is_current",
+    "review_status"
+  ],
+  "required_next_input": "Provide a clean digital file or official source link whose title page explicitly identifies الرسالة العملية للسيد رضا الشيرازي and whose provenance, edition, and completeness can be verified."
+}

@@ -1,0 +1,361 @@
+{
+  "run": "Phase 5 complete corpus recovery",
+  "production_database_modified": false,
+  "production_database_deployed": false,
+  "registry_version": null,
+  "processed_sources": 22,
+  "acquired_sources": 17,
+  "blocked_sources": 5,
+  "staging": {
+    "path": "knowledge/output/phase5_recovery_staging.sqlite",
+    "sha256": "831b73a3de56ce11a2c255db268352a72d84095a9b512d172ec531153425d878",
+    "metrics": {
+      "sources": 17,
+      "chunks": 1038,
+      "fts_rows": 1038,
+      "search": {
+        "التوكل": 2,
+        "الإمامة": 73,
+        "أهل البيت": 116,
+        "الفقه": 101
+      },
+      "integrity": "ok"
+    },
+    "review_policy": "reviewed sources included only by explicit isolated --include-reviewed option; none approved"
+  },
+  "old_production_format": {
+    "path": "knowledge/output/hawza_knowledge.sqlite",
+    "metrics": {
+      "sources": 22,
+      "chunks": 6515,
+      "fts_rows": 6515,
+      "search": {
+        "التوكل": 12,
+        "الإمامة": 88,
+        "أهل البيت": 185,
+        "الفقه": 191
+      },
+      "integrity": "ok"
+    }
+  },
+  "quality_report": {
+    "quality_report_version": 1,
+    "generated_at": "2026-09-06T07:16:35Z",
+    "sources": {
+      "reviewed": 17
+    },
+    "chunks": {
+      "rejected": 1691,
+      "usable": 1038
+    },
+    "corruption": {
+      "arabic_embedded_digit": 1247,
+      "arabic_latin_corruption": 4,
+      "bidi_or_invisible_artifact": 455,
+      "excessive_punctuation_garbage": 371,
+      "malformed_brace_or_pipe": 8
+    },
+    "categories": {
+      "aqeedah": 3,
+      "ethics": 1,
+      "fiqh": 2,
+      "hadith": 1,
+      "hawza": 2,
+      "imamate": 1,
+      "kalam": 2,
+      "mahdawiyyah": 1,
+      "seerah": 2,
+      "tabligh": 1,
+      "usul": 1
+    },
+    "marja_sources": {
+      "السيد علي الحسيني السيستاني": 1
+    }
+  },
+  "sources": [
+    {
+      "source_id": "diyafa-bi-ayn-al-amin",
+      "status": "BLOCKED_SOURCE_REPLACEMENT_REQUIRED",
+      "candidate_title": "",
+      "canonical_title": null,
+      "source_urls": [],
+      "text_chars": 0,
+      "text_sha256": null,
+      "error": "No public reader URL in authoritative registry",
+      "identity_review": "blocked"
+    },
+    {
+      "source_id": "durus-fikr-sadr",
+      "status": "ACQUIRED_PENDING_IDENTITY_AND_GATE_REVIEW",
+      "candidate_title": "دروس من فكر الإمام الصدر",
+      "canonical_title": "دروس من فكر الإمام الصدر",
+      "source_urls": [
+        "https://books.almaaref.org/view.php?id=2617"
+      ],
+      "text_chars": 223685,
+      "text_sha256": "5b6a670fbb77d97dac01b293935386d08c76a210e92879a5fc0a9bf07370ca30",
+      "error": null,
+      "identity_review": "human confirmation required before approval"
+    },
+    {
+      "source_id": "tabligh-dini",
+      "status": "ACQUIRED_PENDING_IDENTITY_AND_GATE_REVIEW",
+      "candidate_title": "التبليغ الديني مفهومه - مضمونه - أساليبه",
+      "canonical_title": "التبليغ الديني مفهومه - مضمونه - أساليبه",
+      "source_urls": [
+        "https://books.almaaref.org/view.php?id=19"
+      ],
+      "text_chars": 209184,
+      "text_sha256": "a2fa698e0a76237821120d9d23a5fa70b22639e81ab80890b828dabb89695624",
+      "error": null,
+      "identity_review": "human confirmation required before approval"
+    },
+    {
+      "source_id": "shakhsiyya-qiyadiyya",
+      "status": "ACQUIRED_PENDING_IDENTITY_AND_GATE_REVIEW",
+      "candidate_title": "الشخصية القيادية للنبي محمد صلى الله عليه وآله وسلم",
+      "canonical_title": "الشخصية القيادية للنبي محمد صلى الله عليه وآله وسلم",
+      "source_urls": [
+        "https://books.almaaref.org/view.php?id=141"
+      ],
+      "text_chars": 118990,
+      "text_sha256": "70cc3e442c66a416de12f4d37345b345c89545ca412562e1249838f38b770e1d",
+      "error": null,
+      "identity_review": "human confirmation required before approval"
+    },
+    {
+      "source_id": "durus-usul-aqidah",
+      "status": "ACQUIRED_PENDING_IDENTITY_AND_GATE_REVIEW",
+      "candidate_title": "دروس في أصول العقيدة الإسلامية",
+      "canonical_title": "دروس في أصول العقيدة الإسلامية",
+      "source_urls": [
+        "https://books.almaaref.org/view.php?id=50"
+      ],
+      "text_chars": 148109,
+      "text_sha256": "ba36a483a89ea7c66659c580b3da0e221e2da75ab17310ef03372ad7390885cf",
+      "error": null,
+      "identity_review": "human confirmation required before approval"
+    },
+    {
+      "source_id": "wilayat-faqih",
+      "status": "ACQUIRED_PENDING_IDENTITY_AND_GATE_REVIEW",
+      "candidate_title": "دروس تمهيدية في ولاية الفقيه",
+      "canonical_title": "دروس تمهيدية في ولاية الفقيه",
+      "source_urls": [
+        "https://books.almaaref.org/view.php?id=443"
+      ],
+      "text_chars": 135196,
+      "text_sha256": "31404cafbd3edf32d5f54995316b9fb6d4f37e8f19f4149401ac26b893df7981",
+      "error": null,
+      "identity_review": "human confirmation required before approval"
+    },
+    {
+      "source_id": "tarbiyah-wilaiyyah",
+      "status": "ACQUIRED_PENDING_IDENTITY_AND_GATE_REVIEW",
+      "candidate_title": "التربية الولائية",
+      "canonical_title": "التربية الولائية",
+      "source_urls": [
+        "https://books.almaaref.org/view.php?id=538"
+      ],
+      "text_chars": 146516,
+      "text_sha256": "7135114a6738477f53ed41a772ac2828b9fdc2ca68bb04eec0a43307eeb489e8",
+      "error": null,
+      "identity_review": "human confirmation required before approval"
+    },
+    {
+      "source_id": "durus-sirah",
+      "status": "ACQUIRED_PENDING_IDENTITY_AND_GATE_REVIEW",
+      "candidate_title": "دروس تمهيدية في سيرة الرسول صلى الله عليه وآله وسلّم والأئمة المعصومين عليهم السلام",
+      "canonical_title": "دروس تمهيدية في سيرة الرسول صلى الله عليه وآله وسلّم والأئمة المعصومين عليهم السلام",
+      "source_urls": [
+        "https://books.almaaref.org/view.php?id=457"
+      ],
+      "text_chars": 372101,
+      "text_sha256": "bc1f11c7f7799048ac837b44753cb84548aa6c5c7b5e0e5f101e61fe34226111",
+      "error": null,
+      "identity_review": "human confirmation required before approval"
+    },
+    {
+      "source_id": "durus-fikr-khamenei-1",
+      "status": "BLOCKED_SOURCE_REPLACEMENT_REQUIRED",
+      "candidate_title": "",
+      "canonical_title": "دروس من فكر الإمام الخامنئي (دام ظله) - 1",
+      "source_urls": [],
+      "text_chars": 0,
+      "text_sha256": null,
+      "error": "No public reader URL in authoritative registry",
+      "identity_review": "blocked"
+    },
+    {
+      "source_id": "durus-fikr-khamenei-2",
+      "status": "BLOCKED_SOURCE_REPLACEMENT_REQUIRED",
+      "candidate_title": "",
+      "canonical_title": "دروس من فكر الإمام الخامنئي (دام ظله) - 2",
+      "source_urls": [],
+      "text_chars": 0,
+      "text_sha256": null,
+      "error": "No public reader URL in authoritative registry",
+      "identity_review": "blocked"
+    },
+    {
+      "source_id": "durus-fikr-khomeini",
+      "status": "ACQUIRED_PENDING_IDENTITY_AND_GATE_REVIEW",
+      "candidate_title": "دروس من فكر الإمام الخميني (قُدِّسَ سِرُّهْ)",
+      "canonical_title": "دروس من فكر الإمام الخميني (قُدِّسَ سِرُّهْ)",
+      "source_urls": [
+        "https://books.almaaref.org/view.php?id=2618"
+      ],
+      "text_chars": 262341,
+      "text_sha256": "85777435e946373c9cc1b107b21d5f43e3134004a6f452cab483bfe61de39c82",
+      "error": null,
+      "identity_review": "human confirmation required before approval"
+    },
+    {
+      "source_id": "madkhal-usul",
+      "status": "ACQUIRED_PENDING_IDENTITY_AND_GATE_REVIEW",
+      "candidate_title": "علم الأصول",
+      "canonical_title": null,
+      "source_urls": [
+        "https://books.almaaref.org/view.php?id=317"
+      ],
+      "text_chars": 92841,
+      "text_sha256": "e32bc90c798d38f4e2b08294da92580c9702fb2e62ba1d36e9f671e4e277d968",
+      "error": null,
+      "identity_review": "human confirmation required before approval"
+    },
+    {
+      "source_id": "madkhal-fiqh",
+      "status": "ACQUIRED_PENDING_IDENTITY_AND_GATE_REVIEW",
+      "candidate_title": "علم الفقه",
+      "canonical_title": null,
+      "source_urls": [
+        "https://books.almaaref.org/view.php?id=315"
+      ],
+      "text_chars": 100020,
+      "text_sha256": "122b4be7ba6eeb8b4a3a8ca9a24ef530bace8d469c0cda6ba1ee28a48c473daf",
+      "error": null,
+      "identity_review": "human confirmation required before approval"
+    },
+    {
+      "source_id": "rihab-aqidah",
+      "status": "ACQUIRED_PENDING_IDENTITY_AND_GATE_REVIEW",
+      "candidate_title": "في رحاب العقيدة الإسلامية",
+      "canonical_title": "في رحاب العقيدة الإسلامية",
+      "source_urls": [
+        "https://books.almaaref.org/view.php?id=13"
+      ],
+      "text_chars": 242161,
+      "text_sha256": "679bb9f559d2589e19ac1834245ba21d85c9c29526262ec6ce163b1ba6e21bb0",
+      "error": null,
+      "identity_review": "human confirmation required before approval"
+    },
+    {
+      "source_id": "madkhal-kalam",
+      "status": "ACQUIRED_PENDING_IDENTITY_AND_GATE_REVIEW",
+      "candidate_title": "مدخل إلى علم الكلام",
+      "canonical_title": "مدخل إلى علم الكلام",
+      "source_urls": [
+        "https://books.almaaref.org/view.php?id=2630"
+      ],
+      "text_chars": 88383,
+      "text_sha256": "a72835642a1c9f02f50c68688cf11eeec297cc7012ac650cbf76d8060e5584df",
+      "error": null,
+      "identity_review": "human confirmation required before approval"
+    },
+    {
+      "source_id": "dirasat-ilahiyyat",
+      "status": "ACQUIRED_PENDING_IDENTITY_AND_GATE_REVIEW",
+      "candidate_title": "دراسات في الإلهيات",
+      "canonical_title": "دراسات في الإلهيات",
+      "source_urls": [
+        "https://books.almaaref.org/view.php?id=57"
+      ],
+      "text_chars": 414025,
+      "text_sha256": "3c68476a393b79b2464ee425a8446e237a012273a1f0f5dd00061524a59d04cc",
+      "error": null,
+      "identity_review": "human confirmation required before approval"
+    },
+    {
+      "source_id": "thaqafat-intizar",
+      "status": "ACQUIRED_PENDING_IDENTITY_AND_GATE_REVIEW",
+      "candidate_title": "ثقافة الإنتظار",
+      "canonical_title": "ثقافة الإنتظار",
+      "source_urls": [
+        "https://books.almaaref.org/view.php?id=2457"
+      ],
+      "text_chars": 289819,
+      "text_sha256": "ba7657577d07f78bff14557e1246b2c58d2a223e6486f853ee526ff5be8ee105",
+      "error": null,
+      "identity_review": "human confirmation required before approval"
+    },
+    {
+      "source_id": "nahj-rasul",
+      "status": "ACQUIRED_PENDING_IDENTITY_AND_GATE_REVIEW",
+      "candidate_title": "نهج الرسول",
+      "canonical_title": "نهج الرسول",
+      "source_urls": [
+        "https://books.almaaref.org/view.php?id=2451"
+      ],
+      "text_chars": 320880,
+      "text_sha256": "20f96d186adae4882f390ffb46d569e0d5da3ec3bcbef7cda1b73d064cef4eb7",
+      "error": null,
+      "identity_review": "human confirmation required before approval"
+    },
+    {
+      "source_id": "maaref-islam",
+      "status": "ACQUIRED_PENDING_IDENTITY_AND_GATE_REVIEW",
+      "candidate_title": "معارف الإسلام",
+      "canonical_title": "معارف الإسلام",
+      "source_urls": [
+        "https://books.almaaref.org/view.php?id=2174"
+      ],
+      "text_chars": 464699,
+      "text_sha256": "1a43e90700f325033f2cbad1038c95edd9e49fd1126e1f05201261d8ec579057",
+      "error": null,
+      "identity_review": "human confirmation required before approval"
+    },
+    {
+      "source_id": "risala-ilmiyya-sayyid-qaid",
+      "status": "BLOCKED_SOURCE_REPLACEMENT_REQUIRED",
+      "candidate_title": "",
+      "canonical_title": null,
+      "source_urls": [],
+      "text_chars": 0,
+      "text_sha256": null,
+      "error": "No public reader URL in authoritative registry",
+      "identity_review": "blocked"
+    },
+    {
+      "source_id": "minhaj-salihin-1445",
+      "status": "ACQUIRED_PENDING_IDENTITY_AND_GATE_REVIEW",
+      "candidate_title": "منهاج الصالحين ـ الجزء الأول (الطبعة المصححة 1445 هـ.) - موقع مكتب سماحة المرجع الديني الأعلى السيد علي الحسيني السيستاني (دام ظله)",
+      "canonical_title": "منهاج الصالحين",
+      "source_urls": [
+        "https://www.sistani.org/arabic/book/23720/",
+        "https://www.sistani.org/arabic/book/15/",
+        "https://www.sistani.org/arabic/book/16/"
+      ],
+      "text_chars": 20317,
+      "text_sha256": "de917d952883fed5426b70922babef2e8fce9e0c5f330b7463c4fca6c3ce9197",
+      "error": null,
+      "identity_review": "human confirmation required before approval"
+    },
+    {
+      "source_id": "risala-amaliyya-shirazi",
+      "status": "BLOCKED_SOURCE_REPLACEMENT_REQUIRED",
+      "candidate_title": "",
+      "canonical_title": "المسائل الإسلامية",
+      "source_urls": [],
+      "text_chars": 0,
+      "text_sha256": null,
+      "error": "No public reader URL in authoritative registry",
+      "identity_review": "blocked"
+    }
+  ],
+  "tests": {
+    "unittest_discover": "passed (13 tests)",
+    "phase5_validation": "passed",
+    "fts_and_integrity": "passed"
+  },
+  "next_action": "Human identity/provenance review is required before any source can move to approved or production."
+}

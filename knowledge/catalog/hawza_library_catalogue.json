@@ -1,0 +1,46 @@
+{
+  "source_library": "https://hawza.netlify.app/book/",
+  "catalogue_endpoint": "Google Drive API v3 files listing via IDs embedded in current catalogue frontend",
+  "generated_at": "2026-09-06",
+  "book_count": 0,
+  "folder_count": 0,
+  "books": [],
+  "folders": [],
+  "errors": [
+    {
+      "library": "main",
+      "folder_id": "1sEulys13YfalOS5yVoaQZeDf4nEF3ObJ",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "library": "child",
+      "folder_id": "1t5wlgrqFQyMOYAnKiGN-ee8nUaXoQSsl",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "library": "noon",
+      "folder_id": "18y7MZhorEYoKUxEXLD0J6qooPrF11_JL",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "library": "publications",
+      "folder_id": "1vuUnMUydyB1ZCR_9ibBEyKdxDcX_OPgi",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "library": "electronic",
+      "folder_id": "1HZwxVbDfNfVOILQX3eg18T-NmUwYy-Uw",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "library": "poems",
+      "folder_id": "1l7zE8Q6B-2Iu_4I9fWBPfdp9ArMQklgE",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "library": "quds",
+      "folder_id": "16Ao3y7yEGxvv0zlZMp5cTKBY_jHy0WJS",
+      "error": "HTTP Error 403: Forbidden"
+    }
+  ]
+}

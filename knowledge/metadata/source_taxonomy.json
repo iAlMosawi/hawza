@@ -1,0 +1,54 @@
+{
+  "schema_version": 2,
+  "categories": [
+    "quran-tafsir",
+    "hadith",
+    "aqeedah",
+    "imamate",
+    "ahl-al-bayt",
+    "seerah",
+    "karbala",
+    "ashura",
+    "arbaeen",
+    "ethics",
+    "spirituality",
+    "dua-ziyarat",
+    "dua-commentary",
+    "hussaini-khitaba",
+    "quran-sciences",
+    "history",
+    "hawza",
+    "fiqh",
+    "marja-specific",
+    "bahraini-shia-heritage",
+    "ramadan",
+    "usul",
+    "kalam",
+    "mahdawiyyah",
+    "tabligh",
+    "islamic-thought",
+    "wilayah",
+    "other"
+  ],
+  "library_display_categories": {
+    "parent_ar": "المكتبة الإلكترونية الدينية",
+    "requested": [
+      {"id": "dua-commentary", "name_ar": "تفسير وشرح الأدعية"},
+      {"id": "hussaini-khitaba", "name_ar": "الخطابة الحسينية"},
+      {"id": "fiqh", "name_ar": "الفقه"},
+      {"id": "quran-sciences", "name_ar": "علوم القرآن"}
+    ]
+  },
+  "review_statuses": [
+    "legacy_trusted",
+    "pending",
+    "reviewed",
+    "approved",
+    "rejected"
+  ],
+  "production_review_statuses": [
+    "legacy_trusted",
+    "approved"
+  ],
+  "notes": "Technical metadata does not establish religious authority. Library catalogue membership is not AI evidence. official_source, is_current, marja, and approved status require human review."
+}

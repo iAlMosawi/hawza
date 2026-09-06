@@ -7,6 +7,8 @@ import sqlite3
 import sys
 import unicodedata
 
+from phase5 import PRODUCTION_REVIEW_STATES, corruption_reasons
+
 ARABIC_DIACRITICS = re.compile(
     r"[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]"
 )
@@ -33,6 +35,12 @@ def main():
     p.add_argument("--db", default="knowledge/output/hawza_knowledge.sqlite")
     p.add_argument("--query")
     p.add_argument("--limit", type=int, default=5)
+    p.add_argument("--require-phase5", action="store_true")
+    p.add_argument(
+        "--allow-empty-blocked-staging",
+        action="store_true",
+        help="Allow a v2 audit staging DB with sources but no evidence only when all sources are blocked/rejected.",
+    )
     args = p.parse_args()
 
     path = Path(args.db)
@@ -51,14 +59,50 @@ def main():
         chunk_count = con.execute("SELECT count(*) FROM chunks").fetchone()[0]
         fts_count = con.execute("SELECT count(*) FROM chunks_fts").fetchone()[0]
 
-        if source_count < 1 or chunk_count < 1 or fts_count != chunk_count:
+        empty_blocked_staging = False
+        if args.allow_empty_blocked_staging and chunk_count == 0 and fts_count == 0 and source_count >= 1:
+            states = {row[0] for row in con.execute("SELECT DISTINCT review_status FROM sources")}
+            empty_blocked_staging = states and states <= {"pending", "reviewed", "rejected"}
+        if source_count < 1 or (chunk_count < 1 and not empty_blocked_staging) or fts_count != chunk_count:
             raise SystemExit(
                 f"Invalid counts: sources={source_count}, chunks={chunk_count}, fts={fts_count}"
             )
 
+        source_columns = {row[1] for row in con.execute("PRAGMA table_info(sources)")}
+        meta = dict(con.execute("SELECT key, value FROM build_meta"))
+        schema_version = int(meta.get("schema_version", "1"))
+        if args.require_phase5 and schema_version < 2:
+            raise SystemExit("Phase 5 validation requires schema_version >= 2")
+
         print(f"[OK] integrity: {integrity}")
         print(f"[OK] sources: {source_count}")
         print(f"[OK] chunks: {chunk_count}")
+        print(f"[OK] schema_version: {schema_version}")
+        if empty_blocked_staging:
+            print("[OK] empty blocked staging: no source is searchable")
+
+        if schema_version >= 2:
+            required = {"review_status", "quality_score", "marja", "official_source", "is_current"}
+            missing = required - source_columns
+            if missing:
+                raise SystemExit(f"Phase 5 source metadata missing: {sorted(missing)}")
+            states = dict(con.execute("SELECT review_status, count(*) FROM sources GROUP BY review_status"))
+            unknown_states = set(states) - {"legacy_trusted", "pending", "reviewed", "approved", "rejected"}
+            if unknown_states:
+                raise SystemExit(f"Unknown review states: {sorted(unknown_states)}")
+            unsafe = con.execute(
+                """
+                SELECT c.id, c.text FROM chunks c
+                JOIN sources s ON s.id = c.source_id
+                WHERE s.review_status IN (?, ?)
+                """,
+                tuple(PRODUCTION_REVIEW_STATES),
+            ).fetchall()
+            corrupt = [(row[0], corruption_reasons(row[1])) for row in unsafe if corruption_reasons(row[1])]
+            if corrupt:
+                raise SystemExit(f"Unsafe production evidence found: {corrupt[:3]}")
+            print(f"[OK] review states: {states}")
+            print("[OK] production evidence corruption gate: passed")
 
         if args.query:
             q = fts_query(args.query)

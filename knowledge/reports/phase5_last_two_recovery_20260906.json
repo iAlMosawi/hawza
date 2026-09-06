@@ -1,0 +1,58 @@
+{
+  "total_sources": 22,
+  "reviewed_sources": 20,
+  "blocked_sources": 2,
+  "approved_sources": 0,
+  "staging": {
+    "sources": 20,
+    "chunks": 2100,
+    "fts_rows": 2100,
+    "integrity": "ok",
+    "sha256": "bb358abc4273497a3e8e6d2d62535bdf0635fd63d2bb8956c5824b650acd6aca"
+  },
+  "retrieval": {
+    "التوكل": 7,
+    "التواكل": 0,
+    "الإخلاص": 19,
+    "التقوى": 24,
+    "الإمامة": 79,
+    "أهل البيت": 122,
+    "الفقه": 101,
+    "الصلاة على محمد وآل محمد": 1,
+    "الابتلاء": 8
+  },
+  "tests": {
+    "unittest": "21 passed",
+    "phase5_validation": "passed",
+    "duplicate_source_ids": 0,
+    "orphan_chunks": 0,
+    "orphan_fts": 0
+  },
+  "diyafa": {
+    "status": "BLOCKED",
+    "canonical_title": "ضيافة بعين الأمين",
+    "canonical_author_institution": "نور الحوزة / خدام نور الحوزة",
+    "legacy_author_rejected": "Abrar ghkh",
+    "legacy_sha256": "1ce99056750e17938ebb2475214a56b0e6054b699925cc5931f811da576a1afa",
+    "candidate_sha256": "dae41b5ca2e15147c5749e3455245b43dad124292da1a31c84caca680adb6abe",
+    "legacy_pages": "145",
+    "candidate_pages": "145",
+    "equivalence": "NOT_ESTABLISHED",
+    "reason": "Both copies are 145 pages with matching title metadata, but deterministic extracted-text comparison could not be completed safely because candidate PDF text extraction stalled; no equivalence claim made.",
+    "extraction": "not staged"
+  },
+  "shirazi": {
+    "status": "BLOCKED",
+    "canonical_id": "masail-islamiyya-sadiq-al-shirazi",
+    "legacy_alias": "risala-amaliyya-shirazi",
+    "toc_expected": "not obtained",
+    "sections_harvested": 0,
+    "failed_section_ids": [],
+    "cache_resume": "implemented and tested",
+    "network_result": "official reader session timed out before TOC/CSRF acquisition",
+    "extraction": "not staged",
+    "pdf_unicode_layer_used": false
+  },
+  "production_modified": false,
+  "production_deployed": false
+}

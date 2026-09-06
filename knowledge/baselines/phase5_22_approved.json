@@ -1,0 +1,234 @@
+{
+  "baseline_name": "noor-al-hawza-phase5-22-approved",
+  "date": "2026-09-06",
+  "commit": "969ff01",
+  "schema_version": 2,
+  "knowledge_version": "phase5-22-approved",
+  "source_count": 22,
+  "total_chunks": 3233,
+  "fts_rows": 3233,
+  "database_path": "knowledge/output/hawza_knowledge_phase5_approved.sqlite",
+  "database_sha256": "cd27d6e0ef4e78ec9d52512f7072b7874d89f5b40073a0827c6843a07cb80417",
+  "sources": [
+    {
+      "source_id": "dirasat-ilahiyyat",
+      "title": "دراسات في الإلهيات",
+      "author": "",
+      "category": "kalam",
+      "marja": null,
+      "source_hash": "3c68476a393b79b2464ee425a8446e237a012273a1f0f5dd00061524a59d04cc",
+      "searchable_chunks": 228,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "diyafa-bi-ayn-al-amin",
+      "title": "ضيافة بعين الأمين",
+      "author": "نور الحوزة / خدام نور الحوزة",
+      "category": "ramadan",
+      "marja": null,
+      "source_hash": "fae97076a0ee5540ca1c0112e4fe339ece0ef5b52f701322cb3b8626b8d35115",
+      "searchable_chunks": 116,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "durus-fikr-khamenei-1",
+      "title": "دروس من فكر الإمام الخامنئي - الجزء الأول",
+      "author": "",
+      "category": "hawza",
+      "marja": null,
+      "source_hash": "95d93e26f2271003337e0bdd7950ac5d95d8486a8a8731901945eae052b1105d",
+      "searchable_chunks": 128,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "durus-fikr-khamenei-2",
+      "title": "دروس من فكر الإمام الخامنئي - الجزء الثاني",
+      "author": "",
+      "category": "hawza",
+      "marja": null,
+      "source_hash": "dd702e6a6f75601ca69899ad33d5cd108cd4efd7d77e6d8a6e3748d384b9a787",
+      "searchable_chunks": 113,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "durus-fikr-khomeini",
+      "title": "دروس من فكر الإمام الخميني",
+      "author": "",
+      "category": "hawza",
+      "marja": null,
+      "source_hash": "85777435e946373c9cc1b107b21d5f43e3134004a6f452cab483bfe61de39c82",
+      "searchable_chunks": 81,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "durus-fikr-sadr",
+      "title": "دروس من فكر الإمام الصدر في العقيدة والتفسير والسيرة",
+      "author": "",
+      "category": "aqeedah",
+      "marja": null,
+      "source_hash": "5b6a670fbb77d97dac01b293935386d08c76a210e92879a5fc0a9bf07370ca30",
+      "searchable_chunks": 50,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "durus-sirah",
+      "title": "دروس تمهيدية في سيرة النبي والأئمة المعصومين",
+      "author": "",
+      "category": "seerah",
+      "marja": null,
+      "source_hash": "bc1f11c7f7799048ac837b44753cb84548aa6c5c7b5e0e5f101e61fe34226111",
+      "searchable_chunks": 98,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "durus-usul-aqidah",
+      "title": "دروس في أصول العقيدة الإسلامية",
+      "author": "",
+      "category": "aqeedah",
+      "marja": null,
+      "source_hash": "ba36a483a89ea7c66659c580b3da0e221e2da75ab17310ef03372ad7390885cf",
+      "searchable_chunks": 27,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "maaref-islam",
+      "title": "معارف الإسلام",
+      "author": "",
+      "category": "hawza",
+      "marja": null,
+      "source_hash": "1a43e90700f325033f2cbad1038c95edd9e49fd1126e1f05201261d8ec579057",
+      "searchable_chunks": 177,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "madkhal-fiqh",
+      "title": "مدخل إلى علم الفقه",
+      "author": "",
+      "category": "fiqh",
+      "marja": null,
+      "source_hash": "122b4be7ba6eeb8b4a3a8ca9a24ef530bace8d469c0cda6ba1ee28a48c473daf",
+      "searchable_chunks": 65,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "madkhal-kalam",
+      "title": "مدخل إلى علم الكلام",
+      "author": "",
+      "category": "kalam",
+      "marja": null,
+      "source_hash": "a72835642a1c9f02f50c68688cf11eeec297cc7012ac650cbf76d8060e5584df",
+      "searchable_chunks": 27,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "madkhal-usul",
+      "title": "مدخل إلى علم الأصول",
+      "author": "",
+      "category": "usul",
+      "marja": null,
+      "source_hash": "e32bc90c798d38f4e2b08294da92580c9702fb2e62ba1d36e9f671e4e277d968",
+      "searchable_chunks": 66,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "minhaj-salihin-1445",
+      "title": "منهاج الصالحين",
+      "author": "",
+      "category": "fiqh",
+      "marja": "sistani",
+      "source_hash": "957bd2edda0a45ebb861d942f56426d11950f211d6a28081d332c566a5f846dd",
+      "searchable_chunks": 1151,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "nahj-rasul",
+      "title": "نهج الرسول: القيم الرسالية والإنسانية في حديث رسول الله",
+      "author": "",
+      "category": "hadith",
+      "marja": null,
+      "source_hash": "20f96d186adae4882f390ffb46d569e0d5da3ec3bcbef7cda1b73d064cef4eb7",
+      "searchable_chunks": 15,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "rihab-aqidah",
+      "title": "في رحاب العقيدة",
+      "author": "",
+      "category": "aqeedah",
+      "marja": null,
+      "source_hash": "679bb9f559d2589e19ac1834245ba21d85c9c29526262ec6ce163b1ba6e21bb0",
+      "searchable_chunks": 24,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "risala-amaliyya-shirazi",
+      "title": "المسائل الإسلامية",
+      "author": "السيد صادق الحسيني الشيرازي",
+      "category": "fiqh",
+      "marja": "السيد صادق الحسيني الشيرازي",
+      "source_hash": "bac880f287583fa1dc907d143ecec6f8f0de1a8cb390928932c58d68e80e2deb",
+      "searchable_chunks": 377,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "risala-ilmiyya-sayyid-qaid",
+      "title": "أجوبة الاستفتاءات",
+      "author": "السيد علي الحسيني الخامنئي",
+      "category": "fiqh",
+      "marja": "khamenei",
+      "source_hash": "1199dd508dd7a260c5540739f159a920ba1f84d385f09558e521aa44b3b5b289",
+      "searchable_chunks": 145,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "shakhsiyya-qiyadiyya",
+      "title": "الشخصية القيادية للنبي محمد في فكر الإمام الخامنئي",
+      "author": "",
+      "category": "seerah",
+      "marja": null,
+      "source_hash": "70cc3e442c66a416de12f4d37345b345c89545ca412562e1249838f38b770e1d",
+      "searchable_chunks": 86,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "tabligh-dini",
+      "title": "التبليغ الديني: مفهومه، مضمونه، أساليبه",
+      "author": "",
+      "category": "tabligh",
+      "marja": null,
+      "source_hash": "a2fa698e0a76237821120d9d23a5fa70b22639e81ab80890b828dabb89695624",
+      "searchable_chunks": 29,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "tarbiyah-wilaiyyah",
+      "title": "التربية الولائية",
+      "author": "",
+      "category": "ethics",
+      "marja": null,
+      "source_hash": "7135114a6738477f53ed41a772ac2828b9fdc2ca68bb04eec0a43307eeb489e8",
+      "searchable_chunks": 45,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "thaqafat-intizar",
+      "title": "ثقافة الانتظار: رؤية جديدة على ضوء هداية القرآن والسنة والعقل",
+      "author": "",
+      "category": "mahdawiyyah",
+      "marja": null,
+      "source_hash": "ba7657577d07f78bff14557e1246b2c58d2a223e6486f853ee526ff5be8ee105",
+      "searchable_chunks": 113,
+      "review_status": "approved"
+    },
+    {
+      "source_id": "wilayat-faqih",
+      "title": "دروس تمهيدية في ولاية الفقيه",
+      "author": "",
+      "category": "imamate",
+      "marja": null,
+      "source_hash": "31404cafbd3edf32d5f54995316b9fb6d4f37e8f19f4149401ac26b893df7981",
+      "searchable_chunks": 72,
+      "review_status": "approved"
+    }
+  ]
+}

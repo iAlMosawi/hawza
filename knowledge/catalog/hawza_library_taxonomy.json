@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "source_library": "https://hawza.netlify.app/book/",
+  "parent_library_ar": "المكتبة الإلكترونية الدينية",
+  "policy": {
+    "catalogue_entry_is_not_ai_evidence": true,
+    "auto_approval": false,
+    "requires_provenance_verification": true,
+    "requires_extraction_quality_gate": true,
+    "requires_human_review_before_approval": true
+  },
+  "requested_categories": [
+    {
+      "id": "dua-commentary",
+      "name_ar": "تفسير وشرح الأدعية",
+      "include_keywords": [
+        "شرح الدعاء", "شرح الأدعية", "تفسير الدعاء", "الأدعية", "المناجاة",
+        "الصحيفة السجادية", "دعاء كميل", "دعاء الافتتاح", "دعاء أبي حمزة",
+        "الزيارة", "الزيارات", "شرح الزيارة"
+      ],
+      "exclude_when_only": ["نص الدعاء", "صوت", "mp3"]
+    },
+    {
+      "id": "hussaini-khitaba",
+      "name_ar": "الخطابة الحسينية",
+      "include_keywords": [
+        "الخطابة", "الخطيب", "المنبر", "المجالس الحسينية", "مجالس حسينية",
+        "المقتل", "عاشوراء", "كربلاء", "النهضة الحسينية", "الإمام الحسين",
+        "الأربعين", "محرم"
+      ]
+    },
+    {
+      "id": "fiqh",
+      "name_ar": "الفقه",
+      "include_keywords": [
+        "الفقه", "فقهي", "الرسالة العملية", "المسائل الشرعية", "الاستفتاءات",
+        "الطهارة", "الصلاة", "الصوم", "الحج", "الخمس", "الزكاة", "المعاملات",
+        "النكاح", "الإرث", "القضاء", "أصول الفقه"
+      ],
+      "special_policy": "Marja-specific and current-ruling use must remain isolated by marja and current-status metadata."
+    },
+    {
+      "id": "quran-sciences",
+      "name_ar": "علوم القرآن",
+      "include_keywords": [
+        "علوم القرآن", "تفسير القرآن", "التفسير", "أسباب النزول", "المحكم والمتشابه",
+        "الناسخ والمنسوخ", "القراءات", "إعجاز القرآن", "جمع القرآن", "دراسات قرآنية",
+        "مناهج المفسرين"
+      ]
+    }
+  ]
+}

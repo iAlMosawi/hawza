@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-06",
+  "branch": "codex/noor-phase5",
+  "production_database_modified": false,
+  "production_deployed": false,
+  "phase5": {
+    "reviewed": 20,
+    "blocked": 2,
+    "approved": 0,
+    "staging_built": false,
+    "diyafa": {
+      "status": "blocked",
+      "canonical_sha256": "1ce99056750e17938ebb2475214a56b0e6054b699925cc5931f811da576a1afa",
+      "pages": 145,
+      "previous_poppler_chars": 363846,
+      "helper_failure": "PyMuPDF/fitz is not installed",
+      "heuristic_repair_used": false
+    },
+    "shirazi": {
+      "status": "blocked",
+      "response_chars": 10605,
+      "required_minimum_chars": 100000,
+      "pdf_unicode_layer_used": false,
+      "ocr_used": false
+    },
+    "unit_tests": {"total": 27, "passed": 27, "failed": 0, "errors": 0}
+  },
+  "hawza_catalogue": {
+    "endpoint": "Google Drive API v3 files listing via frontend-configured root folders",
+    "books_discovered": 0,
+    "categories": {
+      "tafsir_dua": 0,
+      "husseini_preaching": 0,
+      "fiqh": 0,
+      "quran_sciences": 0,
+      "unclassified": 0
+    },
+    "duplicates_against_baseline": null,
+    "api_errors": 7,
+    "access_error": "HTTP 403 Forbidden",
+    "pdfs_downloaded": 0,
+    "output": "knowledge/catalog/hawza_library_catalogue.json",
+    "candidate_output": "knowledge/catalog/hawza_library_candidate.json"
+  },
+  "ready_for_final_human_approval": false
+}

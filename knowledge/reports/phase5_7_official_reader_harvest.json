@@ -1,0 +1,18 @@
+{
+  "phase": "5.7",
+  "status": "PREPROCESSOR_IMPLEMENTED_SAMPLE_BLOCKED",
+  "canonical_source_id": "masail-islamiyya-sadiq-al-shirazi",
+  "legacy_alias": "risala-amaliyya-shirazi",
+  "reader_url": "https://www.alshirazi.org/library-htmlItem/203?langs=AR",
+  "endpoint": "https://www.alshirazi.org/esteftatreatiseBook",
+  "toc_entries_observed": 532,
+  "sample_target": 25,
+  "sample_requests_completed": 0,
+  "run_error": "The read operation timed out while loading the reader page",
+  "production_database_changed": false,
+  "staging_database_changed": false,
+  "source_2_processed": false,
+  "full_harvest_started": false,
+  "database_build_started": false,
+  "next_gate": "Complete the 25-section HTML-to-rendered-PDF verification before any full harvest or isolated database build"
+}

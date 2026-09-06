@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-06",
+  "reviewed": 20,
+  "blocked": 2,
+  "approved": 0,
+  "staging_database": null,
+  "diyafa": {
+    "status": "recovered_pending_review",
+    "method": "poppler_pdftotext_pagewise_strip_nonsemantic_unicode_format_controls_then_phase5_gates",
+    "sha256": "1ce99056750e17938ebb2475214a56b0e6054b699925cc5931f811da576a1afa",
+    "pages": 145,
+    "format_controls_removed": 26388,
+    "accepted_chunks": 157,
+    "rejected_chunks": 34,
+    "rejection_reasons": {"very_short_passage": 23, "excessive_punctuation_garbage": 10, "malformed_brace_or_pipe": 1},
+    "representative_pages_with_safe_chunks": [20, 50, 73, 100, 130],
+    "page_6_safe_chunks": 0,
+    "heuristic_repair": false
+  },
+  "shirazi": {
+    "status": "blocked",
+    "html_incomplete": true,
+    "ocr_fallback_attempted": false,
+    "reason": "No Arabic OCR engine available; unsafe embedded PDF Unicode layer not used"
+  },
+  "unit_tests": {"total": 27, "passed": 27, "failed": 0},
+  "production_modified": false,
+  "ready_for_human_approval": false
+}

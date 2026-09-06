@@ -1,0 +1,76 @@
+{
+  "phase": "5.5",
+  "status": "NO_DEPLOYMENT_NO_STAGING_DATABASE",
+  "canonical_source_id": "masail-islamiyya-sadiq-al-shirazi",
+  "legacy_alias": "risala-amaliyya-shirazi",
+  "title": "المسائل الإسلامية",
+  "attribution": "السيد صادق الحسيني الشيرازي",
+  "official_pdf": {
+    "url": "https://alshirazi.org/data/library/pdf/1-1680299880-resaleh-web.pdf",
+    "sha256": "4d713eaa7fcb726eda8abae9f6b8abf99c96c31c138bff0201af0b0f2eb19cc7",
+    "pages": 668,
+    "embedded_text_assessment": "unsafe"
+  },
+  "official_digital_text_leads": [
+    {
+      "url": "https://www.alshirazi.org/library-item/203?langs=AR",
+      "assessment": "Official library page indexed with Arabic text, but automated retrieval redirects in a loop. Completeness and a stable machine-readable endpoint were not established."
+    },
+    {
+      "url": "https://alshirazi.org/news-item/21910?langs=AR",
+      "assessment": "Official announcement says complete Arabic text was published, but it does not itself establish an extractable, complete source endpoint."
+    }
+  ],
+  "pdf_diagnosis": {
+    "visible_page_assessment": "Representative rendered body pages are readable Arabic.",
+    "embedded_fonts": [
+      "Identity-H subset fonts",
+      "Islamic Units 1",
+      "Abo-thar",
+      "Medina Lt BT"
+    ],
+    "failure_signals": [
+      "Private-use glyphs such as U+F04B/U+F031/U+F043 are emitted instead of Arabic text.",
+      "Many body pages extract only whitespace or dot leaders despite containing visually readable Arabic.",
+      "Extracted non-empty pages contain malformed glyph sequences and punctuation garbage."
+    ],
+    "diagnosis": "The PDF's visual glyphs are not backed by a reliable Unicode text mapping for the extraction path. It is not safe to use its embedded text as religious evidence."
+  },
+  "ocr_pilot": {
+    "engine": "Apple Vision VNRecognizeTextRequest, Arabic, accurate mode",
+    "second_engine": "Not installed; no second reliable Arabic OCR engine was available in the local toolchain. Tesseract packages are discoverable but were not installed for this bounded pilot.",
+    "pages": [1, 2, 3, 10, 15, 25, 50, 100, 150, 200, 250, 335, 420, 500, 600, 660, 668],
+    "page_count": 17,
+    "post_gate_results": {
+      "passes_technical_gates": 15,
+      "rejected_latin_inside_arabic": 1,
+      "rejected_very_short": 1
+    },
+    "manual_comparison": {
+      "result": "not accepted",
+      "reason": "Visible text on clear pages is readable, but Vision output contains observable transcription errors (including a title-word misrecognition and a Latin character inserted into Arabic). A single-engine OCR result cannot be trusted as fatwa/ruling evidence without validated second-engine agreement and page-level review."
+    }
+  },
+  "gate_review": {
+    "changes": [
+      {
+        "rule": "unexpected_control_character",
+        "change": "Ignore whitespace controls such as normal newlines and tabs; still reject non-whitespace Cc/Cs characters.",
+        "rationale": "Normal line breaks were creating false positives in every structured text/OCR sample."
+      },
+      {
+        "rule": "arabic_embedded_digit",
+        "change": "Detect only ASCII digits embedded in Arabic words.",
+        "rationale": "Arabic-Indic numerals in normal numbered rulings (for example, المسألة ٣١٠) are valid content, while the known corrupt form الأ6سباب remains rejected."
+      }
+    ],
+    "retained_rejections": ["U+FFFD", "Arabic/Latin corruption", "ASCII digits within Arabic words", "malformed braces/pipes", "bidi artifacts", "punctuation garbage", "short fragments", "non-whitespace control characters"]
+  },
+  "classification": {
+    "A_official_digital_text": "candidate found, not verified as complete/extractable",
+    "B_ocr_recoverable": "possible, but not accepted from the one-engine pilot",
+    "C_safe_gate_fix": "completed and regression-tested",
+    "D_current_pdf_embedded_text": "not recoverable for evidence retrieval"
+  },
+  "next_safe_step": "Obtain a stable official HTML/text or e-book endpoint, or run a two-engine OCR pilot followed by human page-level verification before any source is added to a staging corpus."
+}

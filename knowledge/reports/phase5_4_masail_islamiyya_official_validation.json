@@ -1,0 +1,50 @@
+{
+  "source_id": "risala-amaliyya-shirazi",
+  "recommended_canonical_source_id": "masail-islamiyya-sadiq-al-shirazi",
+  "legacy_alias_strategy": "Retain risala-amaliyya-shirazi only as a legacy citation/history alias mapped to the canonical source ID.",
+  "manifest_identity": {
+    "title": "الرسالة العملية للسيد رضا الشيرازي",
+    "author": "السيد رضا الشيرازي",
+    "result": "incorrect"
+  },
+  "verified_identity": {
+    "title": "المسائل الإسلامية",
+    "author_attribution": "السيد صادق الحسيني الشيرازي",
+    "category": "fiqh"
+  },
+  "official_candidate": {
+    "direct_pdf_url": "https://alshirazi.org/data/library/pdf/1-1680299880-resaleh-web.pdf",
+    "download_date": "2026-09-06",
+    "sha256": "4d713eaa7fcb726eda8abae9f6b8abf99c96c31c138bff0201af0b0f2eb19cc7",
+    "size_bytes": 38047102,
+    "page_count": 668,
+    "publisher_institution": "Official alshirazi.org distribution (human confirmation still required before setting official_source)",
+    "relationship_to_existing_file": "same_work_same_edition_exact_byte_match"
+  },
+  "phase5_validation": {
+    "candidate_chunks": 108,
+    "safe_chunks": 0,
+    "rejected_chunks": 108,
+    "corruption_percentage": 100.0,
+    "corruption_reasons": {
+      "unexpected_control_character": 108,
+      "arabic_embedded_digit": 42,
+      "excessive_punctuation_garbage": 79,
+      "unusably_short_fragments": 4073
+    },
+    "manual_extraction_samples": {
+      "page_1": "Private-use glyph only; no reliable Arabic text layer.",
+      "page_335": "Dot leaders/no meaningful Arabic evidence.",
+      "page_668": "No extracted text."
+    },
+    "fts_integrity": "not_releasable_zero_chunks",
+    "staging_eligible": false
+  },
+  "metadata_requiring_human_confirmation": [
+    "official_source",
+    "is_current",
+    "marja",
+    "review_status",
+    "edition/version/date"
+  ]
+}

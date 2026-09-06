@@ -1,0 +1,257 @@
+{
+  "registry_version": 1,
+  "generated_for": "Noor Al-Hawza Phase 5 corpus recovery",
+  "policy": {
+    "production_database_must_remain_unchanged": true,
+    "preferred_evidence_order": [
+      "official_structured_html",
+      "official_word_or_epub",
+      "official_clean_unicode_pdf",
+      "verified_institutional_digital_edition",
+      "multi_engine_ocr_with_review"
+    ],
+    "never_infer_marja_or_current_status": true,
+    "never_reconstruct_sacred_text_heuristically": true
+  },
+  "sources": [
+    {
+      "source_id": "diyafa-bi-ayn-al-amin",
+      "manifest_title": "ضيافة بعين الأمين",
+      "status": "human_provenance_required",
+      "recommended_action": "Retain blocked until the repository PDF title page/provenance can be compared with an authoritative publisher copy. Do not trust the manifest author string Abrar ghkh."
+    },
+    {
+      "source_id": "durus-fikr-sadr",
+      "manifest_title": "دروس من فكر الإمام الصدر في العقيدة والتفسير والسيرة",
+      "status": "authoritative_digital_candidate",
+      "canonical_title": "دروس من فكر الإمام الصدر",
+      "subtitle": "في العقيدة والتفسير والسيرة",
+      "author_or_institution": "مركز المعارف للتأليف والتحقيق",
+      "source_url": "https://books.almaaref.org/book.php?id=2617",
+      "reader_url": "https://books.almaaref.org/view.php?id=2617",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "official_html_first"
+    },
+    {
+      "source_id": "tabligh-dini",
+      "manifest_title": "التبليغ الديني: مفهومه، مضمونه، أساليبه",
+      "status": "authoritative_digital_candidate",
+      "canonical_title": "التبليغ الديني مفهومه - مضمونه - أساليبه",
+      "author_or_institution": "مركز المعارف للتأليف والتحقيق",
+      "source_url": "https://books.almaaref.org/book.php?id=19",
+      "reader_url": "https://books.almaaref.org/view.php?id=19",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "official_html_first"
+    },
+    {
+      "source_id": "shakhsiyya-qiyadiyya",
+      "manifest_title": "الشخصية القيادية للنبي محمد في فكر الإمام الخامنئي",
+      "status": "authoritative_digital_candidate",
+      "canonical_title": "الشخصية القيادية للنبي محمد صلى الله عليه وآله وسلم",
+      "author_or_institution": "مركز المعارف للتأليف والتحقيق",
+      "source_url": "https://books.almaaref.org/book.php?id=141",
+      "reader_url": "https://books.almaaref.org/view.php?id=141",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "official_html_first",
+      "identity_note": "Official reader describes the work as a study of the Prophet's leadership in the thought of Imam Sayyid Ali Khamenei."
+    },
+    {
+      "source_id": "durus-usul-aqidah",
+      "manifest_title": "دروس في أصول العقيدة الإسلامية",
+      "status": "authoritative_digital_candidate",
+      "canonical_title": "دروس في أصول العقيدة الإسلامية",
+      "author_or_institution": "مركز المعارف للتأليف والتحقيق",
+      "reader_url": "https://books.almaaref.org/view.php?id=50",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "official_html_first"
+    },
+    {
+      "source_id": "wilayat-faqih",
+      "manifest_title": "دروس تمهيدية في ولاية الفقيه",
+      "status": "authoritative_digital_candidate",
+      "canonical_title": "دروس تمهيدية في ولاية الفقيه",
+      "author_or_institution": "مركز المعارف للتأليف والتحقيق",
+      "source_url": "https://books.almaaref.org/book.php?id=443",
+      "reader_url": "https://books.almaaref.org/view.php?id=443",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "official_html_first"
+    },
+    {
+      "source_id": "tarbiyah-wilaiyyah",
+      "manifest_title": "التربية الولائية",
+      "status": "authoritative_digital_candidate",
+      "canonical_title": "التربية الولائية",
+      "author_or_institution": "مركز المعارف للتأليف والتحقيق",
+      "reader_url": "https://books.almaaref.org/view.php?id=538",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "official_html_first"
+    },
+    {
+      "source_id": "durus-sirah",
+      "manifest_title": "دروس تمهيدية في سيرة النبي والأئمة المعصومين",
+      "status": "authoritative_digital_candidate",
+      "canonical_title": "دروس تمهيدية في سيرة الرسول صلى الله عليه وآله وسلّم والأئمة المعصومين عليهم السلام",
+      "author_or_institution": "مركز المعارف للتأليف والتحقيق",
+      "source_url": "https://books.almaaref.org/book.php?id=457",
+      "reader_url": "https://books.almaaref.org/view.php?id=457",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "official_html_first"
+    },
+    {
+      "source_id": "durus-fikr-khamenei-1",
+      "manifest_title": "دروس من فكر الإمام الخامنئي - الجزء الأول",
+      "status": "authoritative_collection_verified_exact_item_pending",
+      "canonical_title": "دروس من فكر الإمام الخامنئي (دام ظله) - 1",
+      "author_or_institution": "مركز المعارف للتأليف والتحقيق",
+      "collection_url": "https://books.almaaref.org/section.php?id=281",
+      "formats": ["html", "zip"],
+      "recommended_ingestion": "resolve_exact_official_item_then_html"
+    },
+    {
+      "source_id": "durus-fikr-khamenei-2",
+      "manifest_title": "دروس من فكر الإمام الخامنئي - الجزء الثاني",
+      "status": "authoritative_collection_verified_exact_item_pending",
+      "canonical_title": "دروس من فكر الإمام الخامنئي (دام ظله) - 2",
+      "author_or_institution": "مركز المعارف للتأليف والتحقيق",
+      "collection_url": "https://books.almaaref.org/section.php?id=281",
+      "formats": ["html", "zip"],
+      "recommended_ingestion": "resolve_exact_official_item_then_html"
+    },
+    {
+      "source_id": "durus-fikr-khomeini",
+      "manifest_title": "دروس من فكر الإمام الخميني",
+      "status": "authoritative_digital_candidate",
+      "canonical_title": "دروس من فكر الإمام الخميني (قُدِّسَ سِرُّهْ)",
+      "author_or_institution": "مركز المعارف للتأليف والتحقيق",
+      "reader_url": "https://books.almaaref.org/view.php?id=2618",
+      "formats": ["html"],
+      "recommended_ingestion": "official_html_first"
+    },
+    {
+      "source_id": "madkhal-usul",
+      "manifest_title": "مدخل إلى علم الأصول",
+      "status": "authoritative_digital_candidate_title_comparison_required",
+      "canonical_title_candidate": "علم الأصول",
+      "author_or_institution": "مركز المعارف للتأليف والتحقيق",
+      "reader_url": "https://books.almaaref.org/view.php?id=317",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "compare_title_page_and_toc_before_aliasing"
+    },
+    {
+      "source_id": "madkhal-fiqh",
+      "manifest_title": "مدخل إلى علم الفقه",
+      "status": "authoritative_digital_candidate_title_comparison_required",
+      "canonical_title_candidate": "علم الفقه",
+      "author_or_institution": "مركز المعارف للتأليف والتحقيق",
+      "reader_url": "https://books.almaaref.org/view.php?id=315",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "compare_title_page_and_toc_before_aliasing"
+    },
+    {
+      "source_id": "rihab-aqidah",
+      "manifest_title": "في رحاب العقيدة",
+      "status": "authoritative_digital_candidate",
+      "canonical_title": "في رحاب العقيدة الإسلامية",
+      "author_or_institution": "مركز المعارف للتأليف والتحقيق",
+      "reader_url": "https://books.almaaref.org/view.php?id=13",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "official_html_first"
+    },
+    {
+      "source_id": "madkhal-kalam",
+      "manifest_title": "مدخل إلى علم الكلام",
+      "status": "authoritative_digital_candidate",
+      "canonical_title": "مدخل إلى علم الكلام",
+      "author_or_institution": "مركز المعارف للمناهج والمتون التعليمية",
+      "reader_url": "https://books.almaaref.org/view.php?id=2630",
+      "formats": ["html"],
+      "recommended_ingestion": "official_html_first",
+      "identity_note": "Also compare legacy PDF against older official reader id=313 before selecting edition."
+    },
+    {
+      "source_id": "dirasat-ilahiyyat",
+      "manifest_title": "دراسات في الإلهيات",
+      "status": "authoritative_digital_candidate",
+      "canonical_title": "دراسات في الإلهيات",
+      "author_or_institution": "مركز المعارف للتأليف والتحقيق",
+      "reader_url": "https://books.almaaref.org/view.php?id=57",
+      "alternate_newer_reader_url": "https://books.almaaref.org/view.php?id=2162",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "compare_legacy_toc_then_choose_matching_official_edition"
+    },
+    {
+      "source_id": "thaqafat-intizar",
+      "manifest_title": "ثقافة الانتظار: رؤية جديدة على ضوء هداية القرآن والسنة والعقل",
+      "status": "authoritative_digital_candidate",
+      "canonical_title": "ثقافة الإنتظار",
+      "subtitle": "رؤية جديدة على ضوء هداية القرآن والسنة والعقل",
+      "author_or_institution": "مركز المعارف للتأليف والتحقيق",
+      "source_url": "https://books.almaaref.org/book.php?id=2457",
+      "reader_url": "https://books.almaaref.org/view.php?id=2457",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "official_html_first"
+    },
+    {
+      "source_id": "nahj-rasul",
+      "manifest_title": "نهج الرسول: القيم الرسالية والإنسانية في حديث رسول الله",
+      "status": "authoritative_digital_candidate",
+      "canonical_title": "نهج الرسول",
+      "subtitle": "القيم الرسالية والإنسانية في حديث رسول الله صلى الله عليه وآله",
+      "author_or_institution": "مركز المعارف للتأليف والتحقيق",
+      "source_url": "https://books.almaaref.org/book.php?id=2451",
+      "reader_url": "https://books.almaaref.org/view.php?id=2451",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "official_html_first"
+    },
+    {
+      "source_id": "maaref-islam",
+      "manifest_title": "معارف الإسلام",
+      "status": "authoritative_digital_candidate",
+      "canonical_title": "معارف الإسلام",
+      "author_or_institution": "مركز المعارف للتأليف والتحقيق",
+      "reader_url": "https://books.almaaref.org/view.php?id=2174",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "official_html_first",
+      "identity_note": "2018-12 official edition selected because legacy filename is maaref_alislam_2018.pdf."
+    },
+    {
+      "source_id": "risala-ilmiyya-sayyid-qaid",
+      "manifest_title": "الرسالة العلمية للسيد القائد",
+      "status": "human_identity_required",
+      "recommended_action": "Inspect the legacy PDF title/copyright pages and identify the exact official work before acquisition. Do not infer that 'السيد القائد' identifies a particular marja or current fatwa collection."
+    },
+    {
+      "source_id": "minhaj-salihin-1445",
+      "manifest_title": "منهاج الصالحين",
+      "status": "official_structured_html_verified",
+      "canonical_title": "منهاج الصالحين",
+      "marja": "السيد علي الحسيني السيستاني",
+      "official_source": true,
+      "edition": "الطبعة المصححة 1445 هـ",
+      "official_index_url": "https://www.sistani.org/arabic/book/fatwa/",
+      "volume_urls": [
+        "https://www.sistani.org/arabic/book/23720/",
+        "https://www.sistani.org/arabic/book/15/",
+        "https://www.sistani.org/arabic/book/16/"
+      ],
+      "formats": ["html", "pdf"],
+      "recommended_ingestion": "official_html_first"
+    },
+    {
+      "source_id": "risala-amaliyya-shirazi",
+      "recommended_canonical_source_id": "masail-islamiyya-sadiq-al-shirazi",
+      "legacy_alias": "risala-amaliyya-shirazi",
+      "manifest_title": "الرسالة العملية للسيد رضا الشيرازي",
+      "status": "official_identity_verified_reader_harvest_pending",
+      "canonical_title": "المسائل الإسلامية",
+      "attribution": "السيد صادق الحسيني الشيرازي",
+      "official_source": true,
+      "official_reader_url": "https://www.alshirazi.org/library-htmlItem/203?langs=AR",
+      "official_pdf_url": "https://alshirazi.org/data/library/pdf/1-1680299880-resaleh-web.pdf",
+      "official_section_endpoint": "https://www.alshirazi.org/esteftatreatiseBook",
+      "formats": ["html", "pdf"],
+      "recommended_ingestion": "official_reader_html",
+      "warning": "PDF visual content is authoritative but its embedded Unicode text layer is unsafe; do not ingest that text layer."
+    }
+  ]
+}

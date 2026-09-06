@@ -1,0 +1,66 @@
+{
+  "override_version": 3,
+  "reason": "Resolve authoritative item URLs and blocked-source identities discovered after corpus recovery without rewriting the audited base registry.",
+  "sources": [
+    {
+      "source_id": "durus-fikr-khamenei-1",
+      "status": "authoritative_digital_candidate",
+      "source_url": "https://books.almaaref.org/book.php?id=2619",
+      "reader_url": "https://books.almaaref.org/view.php?id=2619",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "official_html_first",
+      "identity_note": "Official Maaref item identifies this as the first volume of the same series."
+    },
+    {
+      "source_id": "durus-fikr-khamenei-2",
+      "status": "authoritative_digital_candidate",
+      "source_url": "https://books.almaaref.org/book.php?id=2620",
+      "reader_url": "https://books.almaaref.org/view.php?id=2620",
+      "formats": ["html", "pdf", "word"],
+      "recommended_ingestion": "official_html_first",
+      "identity_note": "Official Maaref item identifies this as the second volume of the same series."
+    },
+    {
+      "source_id": "diyafa-bi-ayn-al-amin",
+      "status": "canonical_repository_copy_confirmed_extraction_gate_pending",
+      "canonical_title": "ضيافة بعين الأمين",
+      "author_or_institution": "نور الحوزة / خدام نور الحوزة",
+      "canonical_repository_file": "knowledge/sources/diyafa_ramadan.pdf",
+      "canonical_sha256": "1ce99056750e17938ebb2475214a56b0e6054b699925cc5931f811da576a1afa",
+      "canonical_pages": 145,
+      "public_library_url": "https://www.noor-book.com/كتاب-ضيافة-بعين-الأمين-pdf",
+      "formats": ["pdf"],
+      "recommended_ingestion": "canonical_repository_pdf_pagewise_extraction_with_existing_corruption_gates",
+      "identity_note": "The user-supplied canonical PDF is byte-identical to the existing repository PDF (SHA-256 1ce99056750e17938ebb2475214a56b0e6054b699925cc5931f811da576a1afa), is 145 pages, identifies نور الحوزة, and contains the publication permission from خدام نور الحوزة. The old unverified attribution 'Abrar ghkh' is rejected. No comparison against a different public export is required; evidence still must pass the normal extraction/corruption gates before review/approval."
+    },
+    {
+      "source_id": "risala-ilmiyya-sayyid-qaid",
+      "status": "official_identity_verified_structured_html_acquisition_pending",
+      "canonical_title": "أجوبة الاستفتاءات",
+      "attribution": "السيد علي الحسيني الخامنئي",
+      "marja": "السيد علي الحسيني الخامنئي",
+      "official_source": true,
+      "official_reader_url": "https://www.leader.ir/ar/book/14/اجوبة-الإستفتاءات",
+      "formats": ["html", "epub", "pdf"],
+      "recommended_ingestion": "official_structured_html_first",
+      "identity_note": "Official Leader.ir structured book content; source remains reviewed pending human metadata approval."
+    },
+    {
+      "source_id": "risala-amaliyya-shirazi",
+      "recommended_canonical_source_id": "masail-islamiyya-sadiq-al-shirazi",
+      "legacy_alias": "risala-amaliyya-shirazi",
+      "status": "official_identity_verified_static_structured_html_available",
+      "canonical_title": "المسائل الإسلامية",
+      "attribution": "السيد صادق الحسيني الشيرازي",
+      "marja": "السيد صادق الحسيني الشيرازي",
+      "official_source": true,
+      "official_library_item_url": "https://www.alshirazi.org/library-item/203?langs=AR",
+      "official_reader_url": "https://www.alshirazi.org/library-htmlItem/203?langs=AR",
+      "official_pdf_url": "https://alshirazi.org/data/library/pdf/1-1680299880-resaleh-web.pdf",
+      "official_section_endpoint": "https://www.alshirazi.org/esteftatreatiseBook",
+      "formats": ["html", "pdf"],
+      "recommended_ingestion": "official_server_rendered_library_item_via_recover_shirazi_static_py",
+      "identity_note": "The official library-item page now exposes server-rendered Arabic book content and the official office announced publication of the complete Arabic/Persian texts in 2026. Prefer recover_shirazi_static.py against library-item/203; keep the resumable dynamic reader only as a secondary cross-check. Never ingest the unsafe embedded Unicode layer of the old PDF and never repair sacred/fiqh text heuristically."
+    }
+  ]
+}

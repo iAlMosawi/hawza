@@ -1,0 +1,21 @@
+{
+  "phase": "5-final",
+  "status": "STAGING_VALIDATED_BLOCKED_ONLY",
+  "total_sources": 22,
+  "verified_sources": 0,
+  "staging_sources": 22,
+  "staging_chunks": 0,
+  "blocked_sources": 22,
+  "human_review_sources": 22,
+  "production_touched": false,
+  "staging": {
+    "path": "knowledge/output/phase5_staging.sqlite",
+    "sha256": "509fbbbbb34a5b4421392a16af655be2210210d4511ea02cb1200435d1e0ba6b",
+    "integrity": "ok",
+    "fts": "passed",
+    "schema_version": 2
+  },
+  "source_audit": "knowledge/reports/phase5_1_source_audit.json",
+  "source_status": "knowledge/metadata/phase5_final_source_status.json",
+  "tests": 13
+}

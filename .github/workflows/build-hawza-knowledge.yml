@@ -1,4 +1,4 @@
-name: Build Hawza Knowledge Database
+name: Publish Approved Hawza Knowledge Database
 
 on:
   workflow_dispatch:
@@ -7,11 +7,10 @@ on:
       - main
     paths:
       - "knowledge/build/**"
-      - "knowledge/sources/**"
       - "knowledge/metadata/**"
-      - "knowledge/manifest.json"
-      - "book/**"
-      - "*.pdf"
+      - "knowledge/baselines/**"
+      - "knowledge/output/hawza_knowledge_phase5_approved.sqlite"
+      - "knowledge/reports/PHASE5_APPROVED_FINAL.*"
       - ".github/workflows/build-hawza-knowledge.yml"
 
 concurrency:
@@ -22,7 +21,7 @@ permissions:
   contents: write
 
 jobs:
-  build-and-publish:
+  validate-and-publish-approved:
     runs-on: ubuntu-latest
 
     steps:
@@ -41,14 +40,78 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r knowledge/build/requirements.txt
 
-      - name: Build production knowledge database
+      - name: Run knowledge pipeline tests
         run: |
-          python knowledge/build/build_knowledge.py \
-            --manifest knowledge/manifest.json
+          python -m unittest discover -s knowledge/build/tests -v
 
-      - name: Validate database
+      - name: Verify frozen approved Phase 5 artifact
+        shell: bash
         run: |
-          python knowledge/build/validate_knowledge.py --query "التوحيد"
+          set -euo pipefail
+
+          APPROVED_DB="knowledge/output/hawza_knowledge_phase5_approved.sqlite"
+          BASELINE="knowledge/baselines/phase5_22_approved.json"
+
+          test -f "$APPROVED_DB"
+          test -f "$BASELINE"
+
+          EXPECTED_SHA="$(python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('knowledge/baselines/phase5_22_approved.json').read_text(encoding='utf-8'))
+          print(p['database_sha256'])
+          PY
+          )"
+          ACTUAL_SHA="$(sha256sum "$APPROVED_DB" | awk '{print $1}')"
+
+          if [ "$ACTUAL_SHA" != "$EXPECTED_SHA" ]; then
+            echo "Approved database checksum mismatch"
+            echo "Expected: $EXPECTED_SHA"
+            echo "Actual:   $ACTUAL_SHA"
+            exit 1
+          fi
+
+          python knowledge/build/validate_knowledge.py \
+            --db "$APPROVED_DB" \
+            --require-phase5 \
+            --query "التوحيد"
+
+          sqlite3 "$APPROVED_DB" "PRAGMA integrity_check;"
+
+          python - <<'PY'
+          import sqlite3
+          from pathlib import Path
+
+          db = Path('knowledge/output/hawza_knowledge_phase5_approved.sqlite')
+          con = sqlite3.connect(db)
+          try:
+              sources = con.execute('SELECT COUNT(*) FROM sources').fetchone()[0]
+              chunks = con.execute('SELECT COUNT(*) FROM chunks').fetchone()[0]
+              fts = con.execute('SELECT COUNT(*) FROM chunks_fts').fetchone()[0]
+              states = dict(con.execute('SELECT review_status, COUNT(*) FROM sources GROUP BY review_status'))
+              if sources != 22:
+                  raise SystemExit(f'Expected 22 approved sources, got {sources}')
+              if chunks != 3233 or fts != 3233:
+                  raise SystemExit(f'Expected 3233 chunks/FTS rows, got chunks={chunks}, fts={fts}')
+              if states != {'approved': 22}:
+                  raise SystemExit(f'Expected approved-only source state, got {states}')
+              orphan = con.execute('''
+                  SELECT COUNT(*) FROM chunks c
+                  LEFT JOIN sources s ON s.id = c.source_id
+                  WHERE s.id IS NULL
+              ''').fetchone()[0]
+              if orphan:
+                  raise SystemExit(f'Orphan chunks found: {orphan}')
+          finally:
+              con.close()
+          PY
+
+      - name: Prepare approved release artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp knowledge/output/hawza_knowledge_phase5_approved.sqlite \
+             knowledge/output/hawza_knowledge.sqlite
 
       - name: Generate release metadata
         id: metadata
@@ -59,6 +122,7 @@ jobs:
           DB="knowledge/output/hawza_knowledge.sqlite"
           SHA256="$(sha256sum "$DB" | awk '{print $1}')"
           SIZE="$(stat -c%s "$DB")"
+          SCHEMA="$(sqlite3 "$DB" "SELECT value FROM build_meta WHERE key='schema_version'")"
           VERSION="$(date -u +'%Y.%m.%d.%H%M%S')-${GITHUB_SHA::7}"
           TAG="knowledge-${VERSION}"
           UPDATED_AT="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
@@ -68,21 +132,52 @@ jobs:
 
           python - <<PY
           import json
+          import sqlite3
           from pathlib import Path
 
+          db = Path("knowledge/output/hawza_knowledge.sqlite")
+          con = sqlite3.connect(db)
+          try:
+              sources = con.execute("SELECT COUNT(*) FROM sources").fetchone()[0]
+              chunks = con.execute("SELECT COUNT(*) FROM chunks").fetchone()[0]
+              fts_rows = con.execute("SELECT COUNT(*) FROM chunks_fts").fetchone()[0]
+              states = dict(con.execute("SELECT review_status, COUNT(*) FROM sources GROUP BY review_status"))
+          finally:
+              con.close()
+
           payload = {
-              "schema": 1,
+              "schema": ${SCHEMA},
               "version": "${VERSION}",
               "database": "hawza_knowledge.sqlite",
               "sha256": "${SHA256}",
               "size": ${SIZE},
               "updated_at": "${UPDATED_AT}",
               "git_commit": "${GITHUB_SHA}",
+              "baseline": "phase5_22_approved",
+              "source_count": sources,
+              "chunk_count": chunks,
+              "fts_rows": fts_rows,
+              "review_states": states,
               "download_url": "https://github.com/${GITHUB_REPOSITORY}/releases/latest/download/hawza_knowledge.sqlite",
           }
 
           Path("knowledge/output/version.json").write_text(
               json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+
+          quality = {
+              "baseline": "phase5_22_approved",
+              "database_sha256": "${SHA256}",
+              "source_count": sources,
+              "chunk_count": chunks,
+              "fts_rows": fts_rows,
+              "review_states": states,
+              "integrity": "ok",
+              "production_evidence": "approved-only",
+          }
+          Path("knowledge/output/hawza_knowledge.quality.json").write_text(
+              json.dumps(quality, ensure_ascii=False, indent=2) + "\n",
               encoding="utf-8",
           )
           PY
@@ -98,6 +193,7 @@ jobs:
             knowledge/output/hawza_knowledge.sqlite
             knowledge/output/hawza_knowledge.sqlite.sha256
             knowledge/output/version.json
+            knowledge/output/hawza_knowledge.quality.json
           if-no-files-found: error
           retention-days: 30
 
@@ -113,10 +209,11 @@ jobs:
             knowledge/output/hawza_knowledge.sqlite \
             knowledge/output/hawza_knowledge.sqlite.sha256 \
             knowledge/output/version.json \
+            knowledge/output/hawza_knowledge.quality.json \
             --repo "$GITHUB_REPOSITORY" \
             --target "$GITHUB_SHA" \
             --title "Hawza Knowledge $VERSION" \
-            --notes "Automated validated Hawza knowledge database build from commit $GITHUB_SHA." \
+            --notes "Validated approved-only Noor Al-Hawza Phase 5 baseline from commit $GITHUB_SHA." \
             --latest
 
       - name: Print stable update URLs

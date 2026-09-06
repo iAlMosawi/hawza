@@ -1,5 +1,32 @@
 {
   "version": "1.2.0",
+  "knowledge_version": "1.2.0-phase5",
+  "phase5": {
+    "legacy_source_ids": [
+      "diyafa-bi-ayn-al-amin",
+      "durus-fikr-sadr",
+      "tabligh-dini",
+      "shakhsiyya-qiyadiyya",
+      "durus-usul-aqidah",
+      "wilayat-faqih",
+      "tarbiyah-wilaiyyah",
+      "durus-sirah",
+      "durus-fikr-khamenei-1",
+      "durus-fikr-khamenei-2",
+      "durus-fikr-khomeini",
+      "madkhal-usul",
+      "madkhal-fiqh",
+      "rihab-aqidah",
+      "madkhal-kalam",
+      "dirasat-ilahiyyat",
+      "thaqafat-intizar",
+      "nahj-rasul",
+      "maaref-islam",
+      "risala-ilmiyya-sayyid-qaid",
+      "minhaj-salihin-1445",
+      "risala-amaliyya-shirazi"
+    ]
+  },
   "chunking": {
     "target_chars": 1500,
     "overlap_chars": 220,

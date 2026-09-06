@@ -1,0 +1,14 @@
+{
+  "old": {
+    "sources": 22,
+    "chunks": 6515,
+    "searchable_chunks": 6515,
+    "integrity": "ok"
+  },
+  "staging": {
+    "sources": 22,
+    "chunks": 0,
+    "searchable_chunks": 0,
+    "integrity": "ok"
+  }
+}
