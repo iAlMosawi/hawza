@@ -2,8 +2,8 @@
 """Recover the official Arabic text of المسائل الإسلامية from alshirazi.org.
 
 This is an isolated Phase-5 recovery helper. It never edits or deploys the
-production database. The official library item is server-rendered with the book
-text. This path avoids the unsafe embedded Unicode layer of the old PDF.
+production database. The official library item is preferred when reachable.
+This path avoids the unsafe embedded Unicode layer of the old PDF.
 """
 from __future__ import annotations
 
@@ -15,11 +15,7 @@ import json
 from pathlib import Path
 import re
 from urllib.error import HTTPError, URLError
-from urllib.request import (
-    HTTPCookieProcessor,
-    Request,
-    build_opener,
-)
+from urllib.request import HTTPCookieProcessor, Request, build_opener
 
 SOURCE_ID = "masail-islamiyya-sadiq-al-shirazi"
 LEGACY_ALIAS = "risala-amaliyya-shirazi"
@@ -40,8 +36,6 @@ REQUIRED_SECTIONS = (
     "أحكام الصلاة",
     "أحكام الصوم",
     "أحكام الإرث",
-    "مسائل حديثة",
-    "الفهرس",
 )
 
 
@@ -65,27 +59,21 @@ class VisibleText(HTMLParser):
 
 
 def extract_book_text(html: str) -> str:
+    """Extract only the book body, robust to markers sharing one HTML text node."""
     parser = VisibleText()
     parser.feed(html)
-    parts = parser.parts
-    start = None
-    for index, part in enumerate(parts):
-        if any(marker in part for marker in START_MARKERS):
-            start = index
-            break
-    if start is None:
-        raise RuntimeError("official book start marker not found")
+    visible = "\n".join(parser.parts)
 
-    end = None
-    for index in range(start + 1, len(parts)):
-        if END_MARKER in parts[index]:
-            end = index
-            break
-    if end is None:
+    start_positions = [visible.find(marker) for marker in START_MARKERS if visible.find(marker) >= 0]
+    if not start_positions:
+        raise RuntimeError("official book start marker not found")
+    start = min(start_positions)
+
+    end = visible.find(END_MARKER, start + 1)
+    if end < 0:
         raise RuntimeError("official book end marker not found; refusing partial extraction")
 
-    selected = parts[start:end]
-    text = "\n".join(selected).strip()
+    text = visible[start:end].strip()
     if len(text) < 100_000:
         raise RuntimeError(f"official structured text unexpectedly short: {len(text)} chars")
 
@@ -104,7 +92,7 @@ def _headers(referer: str) -> dict[str, str]:
         "User-Agent": (
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
             "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/140.0 Safari/537.36 Noor-AlHawza-Recovery/1.3"
+            "Chrome/140.0 Safari/537.36 Noor-AlHawza-Recovery/1.4"
         ),
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         "Accept-Language": "ar,en;q=0.7",
@@ -117,14 +105,12 @@ def _headers(referer: str) -> dict[str, str]:
 
 
 def fetch() -> tuple[str, bytes]:
-    """Fetch with a real cookie jar; alshirazi may bootstrap a session by 302."""
+    """Fetch with a cookie jar; fail closed if the official server redirect-loops."""
     errors: list[str] = []
     for home_url, official_url in zip(HOME_URLS, OFFICIAL_URLS):
         jar = CookieJar()
         opener = build_opener(HTTPCookieProcessor(jar))
         try:
-            # Warm the official domain first so session/CSRF cookies survive the
-            # redirect chain. Failure of the warm-up is non-fatal.
             try:
                 opener.open(Request(home_url, headers=_headers(home_url)), timeout=30).read(256)
             except Exception:
