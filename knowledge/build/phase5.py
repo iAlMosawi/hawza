@@ -41,7 +41,10 @@ LEGACY_CATEGORY_MAP = {
 }
 
 _ARABIC = r"\u0600-\u06FF"
-_EMBEDDED_DIGIT = re.compile(rf"(?<=[{_ARABIC}])\d+(?=[{_ARABIC}])")
+# Arabic-Indic numerals are valid in numbered rulings (for example
+# "المسألة ٣١٠"). The corruption signal is an ASCII digit embedded inside an
+# Arabic word, such as the known damaged extraction "الأ6سباب".
+_EMBEDDED_DIGIT = re.compile(rf"(?<=[{_ARABIC}])[0-9]+(?=[{_ARABIC}])")
 _ARABIC_LATIN = re.compile(rf"(?<=[{_ARABIC}])[A-Za-z]+(?=[{_ARABIC}])")
 _MALFORMED_MARKER = re.compile(r"[{}|]")
 _EXCESSIVE_GARBAGE = re.compile(r"[.\-_=*]{12,}")
@@ -108,7 +111,12 @@ def corruption_reasons(text: str, *, minimum_chars: int = 80) -> list[str]:
     visible = "".join(char for char in value if not char.isspace())
     if len(visible) < minimum_chars:
         reasons.append("very_short_passage")
-    if any(unicodedata.category(char) in {"Cc", "Cs"} for char in value):
+    # Newlines and tabs are normal text structure. Only non-whitespace control
+    # characters are extraction corruption and must block evidence.
+    if any(
+        unicodedata.category(char) in {"Cc", "Cs"} and not char.isspace()
+        for char in value
+    ):
         reasons.append("unexpected_control_character")
     return reasons
 

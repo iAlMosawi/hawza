@@ -30,6 +30,16 @@ class BuildKnowledgeTests(unittest.TestCase):
         for value in ("�", "ليzس", "الأ6سباب", "الم}ضار"):
             self.assertTrue(corruption_reasons("نص عربي طويل " + value + " للاختبار " * 20))
 
+    def test_normal_line_breaks_are_not_control_corruption(self):
+        text = "نص عربي سليم ومنظم على سطرين.\n" * 8
+        self.assertNotIn("unexpected_control_character", corruption_reasons(text))
+        self.assertIn("unexpected_control_character", corruption_reasons(text + "\x00"))
+
+    def test_arabic_indic_ruling_numbers_are_not_corruption(self):
+        text = "المسألة ٣١٠: نص عربي سليم ومنظم. " * 8
+        self.assertNotIn("arabic_embedded_digit", corruption_reasons(text))
+        self.assertIn("arabic_embedded_digit", corruption_reasons("هذا الأ6سباب مثال. " * 8))
+
     def test_builds_searchable_database_from_reviewed_chunk(self):
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = Path(temporary_directory)
