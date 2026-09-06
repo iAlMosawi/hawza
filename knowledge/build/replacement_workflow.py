@@ -13,6 +13,15 @@ from pathlib import Path
 
 TOP_PRIORITY = ["risala-amaliyya-shirazi", "risala-ilmiyya-sayyid-qaid"]
 
+# These are evidence-backed acquisition outcomes, not religious review fields.
+ACQUISITION_OUTCOMES = {
+    "risala-amaliyya-shirazi": {
+        "replacement_verification_status": "VERIFIED_REPLACEMENT_NOT_FOUND",
+        "identity_verification_status": "manifest_identity_conflict",
+        "acquisition_report": "knowledge/reports/phase5_3_risala_amaliyya_shirazi_acquisition.json",
+    },
+}
+
 
 def risk_score(source: dict) -> int:
     if source.get("category") == "fiqh":
@@ -38,7 +47,7 @@ def build_records(manifest: dict, audit: dict) -> list[dict]:
     records = []
     for position, source in enumerate(ordered, 1):
         audit_item = audit_by_id[source["id"]]
-        records.append({
+        record = {
             "priority": position,
             "source_id": source["id"],
             "current_title": source.get("title", ""),
@@ -62,7 +71,9 @@ def build_records(manifest: dict, audit: dict) -> list[dict]:
             "corruption_percentage": audit_item["corruption_percentage"],
             "source_status": audit_item["source_status"],
             "notes": source.get("notes", ""),
-        })
+        }
+        record.update(ACQUISITION_OUTCOMES.get(source["id"], {}))
+        records.append(record)
     return records
 
 
