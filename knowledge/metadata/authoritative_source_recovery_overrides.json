@@ -19,6 +19,18 @@
       "formats": ["html", "pdf", "word"],
       "recommended_ingestion": "official_html_first",
       "identity_note": "Official Maaref item identifies this as the second volume of the same series."
+    },
+    {
+      "source_id": "risala-ilmiyya-sayyid-qaid",
+      "status": "authoritative_structured_html_candidate",
+      "canonical_title": "أجوبة الاستفتاءات",
+      "attribution": "السيد علي الحسيني الخامنئي",
+      "official_source": true,
+      "is_current": null,
+      "reader_url": "https://www.leader.ir/ar/book/14/اجوبة-الإستفتاءات",
+      "formats": ["html"],
+      "recommended_ingestion": "official_html_first",
+      "identity_note": "Official Leader.ir library page; source remains reviewed pending human metadata approval."
     }
   ]
 }

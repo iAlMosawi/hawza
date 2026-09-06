@@ -1,0 +1,35 @@
+{
+  "quality_report_version": 1,
+  "generated_at": "2026-09-06T08:47:18Z",
+  "sources": {
+    "reviewed": 20
+  },
+  "chunks": {
+    "rejected": 2186,
+    "usable": 2100
+  },
+  "corruption": {
+    "arabic_embedded_digit": 1281,
+    "arabic_latin_corruption": 5,
+    "bidi_or_invisible_artifact": 926,
+    "excessive_punctuation_garbage": 371,
+    "malformed_brace_or_pipe": 8
+  },
+  "categories": {
+    "aqeedah": 3,
+    "ethics": 1,
+    "fiqh": 3,
+    "hadith": 1,
+    "hawza": 4,
+    "imamate": 1,
+    "kalam": 2,
+    "mahdawiyyah": 1,
+    "seerah": 2,
+    "tabligh": 1,
+    "usul": 1
+  },
+  "marja_sources": {
+    "khamenei": 1,
+    "sistani": 1
+  }
+}
