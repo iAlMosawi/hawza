@@ -1,0 +1,118 @@
+{
+  "old_database": {
+    "ما معنى التوكل على الله؟": {
+      "result_count": 8,
+      "source_ids": [
+        "durus-fikr-khamenei-1",
+        "dirasat-ilahiyyat",
+        "durus-fikr-khamenei-1",
+        "nahj-rasul",
+        "tarbiyah-wilaiyyah",
+        "diyafa-bi-ayn-al-amin",
+        "maaref-islam",
+        "nahj-rasul"
+      ],
+      "chunk_ids": [
+        "c89f2e73b3c80ebf771ade9c",
+        "fa35de0d797fdc3e4b188c50",
+        "5c6caaf3e96cebd1fe64798e",
+        "871fbf4d80f76180ceb9fecd",
+        "6f09d48390c168a206eb4859",
+        "5b269aff1810b7df6e456f64",
+        "ee51405ff75e0290ea4132fe",
+        "50f5591612c03e1fe0adcc0d"
+      ],
+      "quality_note": "Retrieved from legacy v1 evidence; Phase 5.1 audit found the underlying extraction unsafe for a new release."
+    },
+    "ما الفرق بين التوكل والتواكل؟": {
+      "result_count": 8,
+      "source_ids": [
+        "durus-fikr-khamenei-1",
+        "durus-fikr-khamenei-1",
+        "diyafa-bi-ayn-al-amin",
+        "nahj-rasul",
+        "durus-fikr-khamenei-2",
+        "durus-fikr-khamenei-2",
+        "shakhsiyya-qiyadiyya",
+        "thaqafat-intizar"
+      ],
+      "chunk_ids": [
+        "c89f2e73b3c80ebf771ade9c",
+        "5c6caaf3e96cebd1fe64798e",
+        "5b269aff1810b7df6e456f64",
+        "50f5591612c03e1fe0adcc0d",
+        "20e16d48783d928d2352143a",
+        "07da769d7edd9a83d05ccec4",
+        "e5a9fdf1f856de0ed36141ec",
+        "67f6ef2eba62b606ad965e1c"
+      ],
+      "quality_note": "Retrieved from legacy v1 evidence; Phase 5.1 audit found the underlying extraction unsafe for a new release."
+    },
+    "ما معنى الإمامة عند الشيعة الإمامية؟": {
+      "result_count": 8,
+      "source_ids": [
+        "minhaj-salihin-1445",
+        "maaref-islam",
+        "minhaj-salihin-1445",
+        "dirasat-ilahiyyat",
+        "diyafa-bi-ayn-al-amin",
+        "diyafa-bi-ayn-al-amin",
+        "maaref-islam",
+        "thaqafat-intizar"
+      ],
+      "chunk_ids": [
+        "4d37129445479799c47a2f1d",
+        "4502d95987b35ddf0d562d60",
+        "1ac7513ffb3b7dae94728023",
+        "6e9b82a5bc5f44476f82cc85",
+        "c907069fc01c3d7fb6bcfcaf",
+        "534e012a43cc156732f25808",
+        "18d41071297a8feb73ca8cea",
+        "02e15d5e00baf7dfe7e690a8"
+      ],
+      "quality_note": "Retrieved from legacy v1 evidence; Phase 5.1 audit found the underlying extraction unsafe for a new release."
+    },
+    "ما هي مكانة أهل البيت عليهم السلام في الإسلام؟": {
+      "result_count": 8,
+      "source_ids": [
+        "durus-fikr-sadr",
+        "diyafa-bi-ayn-al-amin",
+        "maaref-islam",
+        "maaref-islam",
+        "risala-ilmiyya-sayyid-qaid",
+        "risala-ilmiyya-sayyid-qaid",
+        "diyafa-bi-ayn-al-amin",
+        "dirasat-ilahiyyat"
+      ],
+      "chunk_ids": [
+        "f56b27f0bba706055c048c9f",
+        "ccaf843cd26c99c3f2686872",
+        "412433b94aa240c43df57c7f",
+        "a63c2508105c8b85f3bf0cf5",
+        "fb24b3a0935c37beec414328",
+        "41255c0757123fb93b2b9381",
+        "c02746858634a117e6171407",
+        "28c80db33f219981d0a1eaaf"
+      ],
+      "quality_note": "Retrieved from legacy v1 evidence; Phase 5.1 audit found the underlying extraction unsafe for a new release."
+    }
+  },
+  "staging_database": {
+    "ما معنى التوكل على الله؟": {
+      "result_count": 0,
+      "reason": "No safe chunks passed Phase 5.1 gates"
+    },
+    "ما الفرق بين التوكل والتواكل؟": {
+      "result_count": 0,
+      "reason": "No safe chunks passed Phase 5.1 gates"
+    },
+    "ما معنى الإمامة عند الشيعة الإمامية؟": {
+      "result_count": 0,
+      "reason": "No safe chunks passed Phase 5.1 gates"
+    },
+    "ما هي مكانة أهل البيت عليهم السلام في الإسلام؟": {
+      "result_count": 0,
+      "reason": "No safe chunks passed Phase 5.1 gates"
+    }
+  }
+}

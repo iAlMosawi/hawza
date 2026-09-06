@@ -1,0 +1,1811 @@
+{
+  "generated_at": "2026-09-06T06:05:33Z",
+  "released_database": {
+    "source_count": 22,
+    "chunk_count": 6515,
+    "integrity_check": "ok"
+  },
+  "summary": {
+    "clean_rebuild_ready": 0,
+    "needs_better_extraction": 0,
+    "needs_replacement_source": 22,
+    "blocked": 0,
+    "human_metadata_review": 22,
+    "corruption_reasons": {
+      "malformed_brace_or_pipe": 1686,
+      "unexpected_control_character": 6533,
+      "arabic_embedded_digit": 2139,
+      "excessive_punctuation_garbage": 498,
+      "unusably_short_fragments": 135572,
+      "malformed_symbols": 694,
+      "arabic_latin_corruption": 1681,
+      "bidi_or_invisible_artifact": 494,
+      "replacement_character": 1531
+    }
+  },
+  "sources": [
+    {
+      "source_id": "diyafa-bi-ayn-al-amin",
+      "title": "ضيافة بعين الأمين",
+      "author": "Abrar ghkh",
+      "category": "ramadan",
+      "original_path": "../../diyafa_ramadan.pdf",
+      "file_type": "pdf",
+      "pages": 145,
+      "released_chunk_count": 176,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 177,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "malformed_brace_or_pipe": 2,
+        "unexpected_control_character": 177,
+        "arabic_embedded_digit": 56,
+        "excessive_punctuation_garbage": 10,
+        "unusably_short_fragments": 2364
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 142,
+          "characters": 157878,
+          "chunk_count": 177,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 177,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "malformed_brace_or_pipe": 2,
+            "unexpected_control_character": 177,
+            "arabic_embedded_digit": 56,
+            "excessive_punctuation_garbage": 10,
+            "unusably_short_fragments": 2364
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 1,
+          "characters": 22,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 2
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 1,
+          "characters": 21,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 2
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "edition",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "durus-fikr-sadr",
+      "title": "دروس من فكر الإمام الصدر في العقيدة والتفسير والسيرة",
+      "author": "",
+      "category": "aqeedah",
+      "original_path": "durus_mn_fekr_alsadr.pdf",
+      "file_type": "pdf",
+      "pages": 162,
+      "released_chunk_count": 246,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 246,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "malformed_symbols": 1,
+        "unexpected_control_character": 246,
+        "excessive_punctuation_garbage": 8,
+        "arabic_latin_corruption": 61,
+        "bidi_or_invisible_artifact": 23,
+        "arabic_embedded_digit": 28,
+        "unusably_short_fragments": 4128
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 149,
+          "characters": 248377,
+          "chunk_count": 246,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 246,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "malformed_symbols": 1,
+            "unexpected_control_character": 246,
+            "excessive_punctuation_garbage": 8,
+            "arabic_latin_corruption": 61,
+            "bidi_or_invisible_artifact": 23,
+            "arabic_embedded_digit": 28,
+            "unusably_short_fragments": 4128
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 2,
+          "characters": 847,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "malformed_symbols": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 9
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 2,
+          "characters": 853,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "malformed_symbols": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 9
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "tabligh-dini",
+      "title": "التبليغ الديني: مفهومه، مضمونه، أساليبه",
+      "author": "",
+      "category": "tabligh",
+      "original_path": "altabligh.pdf",
+      "file_type": "pdf",
+      "pages": 200,
+      "released_chunk_count": 191,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 189,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "replacement_character": 188,
+        "arabic_embedded_digit": 188,
+        "malformed_brace_or_pipe": 184,
+        "unexpected_control_character": 189,
+        "excessive_punctuation_garbage": 12,
+        "arabic_latin_corruption": 175,
+        "bidi_or_invisible_artifact": 15,
+        "unusably_short_fragments": 6187
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 198,
+          "characters": 225418,
+          "chunk_count": 189,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 189,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 188,
+            "arabic_embedded_digit": 188,
+            "malformed_brace_or_pipe": 184,
+            "unexpected_control_character": 189,
+            "excessive_punctuation_garbage": 12,
+            "arabic_latin_corruption": 175,
+            "bidi_or_invisible_artifact": 15,
+            "unusably_short_fragments": 6187
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 2,
+          "characters": 177,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 10
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 2,
+          "characters": 393,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 18
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "shakhsiyya-qiyadiyya",
+      "title": "الشخصية القيادية للنبي محمد في فكر الإمام الخامنئي",
+      "author": "",
+      "category": "seerah",
+      "original_path": "pdf_alchkhseya_alqeyadeya_llnabi_mohammad.pdf",
+      "file_type": "pdf",
+      "pages": 110,
+      "released_chunk_count": 115,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 115,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "replacement_character": 115,
+        "arabic_embedded_digit": 115,
+        "arabic_latin_corruption": 112,
+        "malformed_brace_or_pipe": 114,
+        "malformed_symbols": 1,
+        "unexpected_control_character": 115,
+        "excessive_punctuation_garbage": 11,
+        "unusably_short_fragments": 2163
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 105,
+          "characters": 137287,
+          "chunk_count": 115,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 115,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 115,
+            "arabic_embedded_digit": 115,
+            "arabic_latin_corruption": 112,
+            "malformed_brace_or_pipe": 114,
+            "malformed_symbols": 1,
+            "unexpected_control_character": 115,
+            "excessive_punctuation_garbage": 11,
+            "unusably_short_fragments": 2163
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 2,
+          "characters": 131,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 7
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 2,
+          "characters": 332,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 7
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "durus-usul-aqidah",
+      "title": "دروس في أصول العقيدة الإسلامية",
+      "author": "",
+      "category": "aqeedah",
+      "original_path": "pdf_dourouss_fe_aosoul_alakida_alislameya.pdf",
+      "file_type": "pdf",
+      "pages": 175,
+      "released_chunk_count": 152,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 152,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "replacement_character": 152,
+        "arabic_embedded_digit": 147,
+        "arabic_latin_corruption": 144,
+        "malformed_brace_or_pipe": 148,
+        "malformed_symbols": 135,
+        "unexpected_control_character": 152,
+        "excessive_punctuation_garbage": 7,
+        "unusably_short_fragments": 2880
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 172,
+          "characters": 164266,
+          "chunk_count": 152,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 152,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 152,
+            "arabic_embedded_digit": 147,
+            "arabic_latin_corruption": 144,
+            "malformed_brace_or_pipe": 148,
+            "malformed_symbols": 135,
+            "unexpected_control_character": 152,
+            "excessive_punctuation_garbage": 7,
+            "unusably_short_fragments": 2880
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 1,
+          "characters": 40,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 2
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 1,
+          "characters": 69,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 7
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "wilayat-faqih",
+      "title": "دروس تمهيدية في ولاية الفقيه",
+      "author": "",
+      "category": "imamate",
+      "original_path": "pdf_durus_tamhedeya_welaya.pdf",
+      "file_type": "pdf",
+      "pages": 150,
+      "released_chunk_count": 151,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 151,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "replacement_character": 149,
+        "arabic_latin_corruption": 143,
+        "malformed_symbols": 139,
+        "unexpected_control_character": 151,
+        "arabic_embedded_digit": 130,
+        "excessive_punctuation_garbage": 5,
+        "malformed_brace_or_pipe": 144,
+        "bidi_or_invisible_artifact": 4,
+        "unusably_short_fragments": 2632
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 126,
+          "characters": 148954,
+          "chunk_count": 151,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 151,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 149,
+            "arabic_latin_corruption": 143,
+            "malformed_symbols": 139,
+            "unexpected_control_character": 151,
+            "arabic_embedded_digit": 130,
+            "excessive_punctuation_garbage": 5,
+            "malformed_brace_or_pipe": 144,
+            "bidi_or_invisible_artifact": 4,
+            "unusably_short_fragments": 2632
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 2,
+          "characters": 158,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 7
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 2,
+          "characters": 350,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 8
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "tarbiyah-wilaiyyah",
+      "title": "التربية الولائية",
+      "author": "",
+      "category": "ethics",
+      "original_path": "pdf_altarbeya_alwelaeya.pdf",
+      "file_type": "pdf",
+      "pages": 138,
+      "released_chunk_count": 146,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 146,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "replacement_character": 2,
+        "arabic_embedded_digit": 36,
+        "arabic_latin_corruption": 6,
+        "malformed_symbols": 1,
+        "unexpected_control_character": 146,
+        "excessive_punctuation_garbage": 8,
+        "malformed_brace_or_pipe": 31,
+        "bidi_or_invisible_artifact": 10,
+        "unusably_short_fragments": 2590
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 114,
+          "characters": 149097,
+          "chunk_count": 146,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 146,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 2,
+            "arabic_embedded_digit": 36,
+            "arabic_latin_corruption": 6,
+            "malformed_symbols": 1,
+            "unexpected_control_character": 146,
+            "excessive_punctuation_garbage": 8,
+            "malformed_brace_or_pipe": 31,
+            "bidi_or_invisible_artifact": 10,
+            "unusably_short_fragments": 2590
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 2,
+          "characters": 91,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 5
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 2,
+          "characters": 271,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 6
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "durus-sirah",
+      "title": "دروس تمهيدية في سيرة النبي والأئمة المعصومين",
+      "author": "",
+      "category": "seerah",
+      "original_path": "pdf_durus_tamhedeya_serah.pdf",
+      "file_type": "pdf",
+      "pages": 288,
+      "released_chunk_count": 391,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 391,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "replacement_character": 391,
+        "arabic_embedded_digit": 380,
+        "arabic_latin_corruption": 386,
+        "malformed_symbols": 136,
+        "unexpected_control_character": 391,
+        "malformed_brace_or_pipe": 380,
+        "excessive_punctuation_garbage": 18,
+        "bidi_or_invisible_artifact": 34,
+        "unusably_short_fragments": 5822
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 249,
+          "characters": 390878,
+          "chunk_count": 391,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 391,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 391,
+            "arabic_embedded_digit": 380,
+            "arabic_latin_corruption": 386,
+            "malformed_symbols": 136,
+            "unexpected_control_character": 391,
+            "malformed_brace_or_pipe": 380,
+            "excessive_punctuation_garbage": 18,
+            "bidi_or_invisible_artifact": 34,
+            "unusably_short_fragments": 5822
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 2,
+          "characters": 160,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 7
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 2,
+          "characters": 405,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 9
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "durus-fikr-khamenei-1",
+      "title": "دروس من فكر الإمام الخامنئي - الجزء الأول",
+      "author": "",
+      "category": "hawza",
+      "original_path": "durus_mn_fekr_alkhamenei-1.pdf",
+      "file_type": "pdf",
+      "pages": 154,
+      "released_chunk_count": 190,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 190,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "malformed_symbols": 1,
+        "unexpected_control_character": 190,
+        "excessive_punctuation_garbage": 8,
+        "arabic_latin_corruption": 36,
+        "bidi_or_invisible_artifact": 10,
+        "arabic_embedded_digit": 8,
+        "unusably_short_fragments": 3617
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 147,
+          "characters": 218686,
+          "chunk_count": 190,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 190,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "malformed_symbols": 1,
+            "unexpected_control_character": 190,
+            "excessive_punctuation_garbage": 8,
+            "arabic_latin_corruption": 36,
+            "bidi_or_invisible_artifact": 10,
+            "arabic_embedded_digit": 8,
+            "unusably_short_fragments": 3617
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 2,
+          "characters": 798,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "malformed_symbols": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 8
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 2,
+          "characters": 805,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "malformed_symbols": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 7
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "durus-fikr-khamenei-2",
+      "title": "دروس من فكر الإمام الخامنئي - الجزء الثاني",
+      "author": "",
+      "category": "hawza",
+      "original_path": "durus_mn_fekr_alkhamenei-2.pdf",
+      "file_type": "pdf",
+      "pages": 154,
+      "released_chunk_count": 180,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 180,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "arabic_latin_corruption": 17,
+        "malformed_symbols": 1,
+        "unexpected_control_character": 180,
+        "excessive_punctuation_garbage": 8,
+        "arabic_embedded_digit": 5,
+        "bidi_or_invisible_artifact": 8,
+        "unusably_short_fragments": 3475
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 142,
+          "characters": 211231,
+          "chunk_count": 180,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 180,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "arabic_latin_corruption": 17,
+            "malformed_symbols": 1,
+            "unexpected_control_character": 180,
+            "excessive_punctuation_garbage": 8,
+            "arabic_embedded_digit": 5,
+            "bidi_or_invisible_artifact": 8,
+            "unusably_short_fragments": 3475
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 2,
+          "characters": 797,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "arabic_latin_corruption": 1,
+            "malformed_symbols": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 8
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 2,
+          "characters": 805,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "malformed_symbols": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 7
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "durus-fikr-khomeini",
+      "title": "دروس من فكر الإمام الخميني",
+      "author": "",
+      "category": "hawza",
+      "original_path": "durus_mn_fekr_alkhomeini.pdf",
+      "file_type": "pdf",
+      "pages": 178,
+      "released_chunk_count": 297,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 297,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "malformed_symbols": 1,
+        "unexpected_control_character": 297,
+        "excessive_punctuation_garbage": 2,
+        "arabic_latin_corruption": 36,
+        "bidi_or_invisible_artifact": 85,
+        "arabic_embedded_digit": 10,
+        "unusably_short_fragments": 4343
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 169,
+          "characters": 289273,
+          "chunk_count": 297,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 297,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "malformed_symbols": 1,
+            "unexpected_control_character": 297,
+            "excessive_punctuation_garbage": 2,
+            "arabic_latin_corruption": 36,
+            "bidi_or_invisible_artifact": 85,
+            "arabic_embedded_digit": 10,
+            "unusably_short_fragments": 4343
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 1,
+          "characters": 797,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "malformed_symbols": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 6
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 1,
+          "characters": 803,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "malformed_symbols": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 6
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "madkhal-usul",
+      "title": "مدخل إلى علم الأصول",
+      "author": "",
+      "category": "usul",
+      "original_path": "ousoul.pdf",
+      "file_type": "pdf",
+      "pages": 111,
+      "released_chunk_count": 91,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 91,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "replacement_character": 89,
+        "arabic_embedded_digit": 84,
+        "arabic_latin_corruption": 90,
+        "malformed_brace_or_pipe": 85,
+        "excessive_punctuation_garbage": 5,
+        "unexpected_control_character": 91,
+        "bidi_or_invisible_artifact": 3,
+        "unusably_short_fragments": 1864
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 111,
+          "characters": 104973,
+          "chunk_count": 91,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 91,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 89,
+            "arabic_embedded_digit": 84,
+            "arabic_latin_corruption": 90,
+            "malformed_brace_or_pipe": 85,
+            "excessive_punctuation_garbage": 5,
+            "unexpected_control_character": 91,
+            "bidi_or_invisible_artifact": 3,
+            "unusably_short_fragments": 1864
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 3,
+          "characters": 132,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 8
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 3,
+          "characters": 153,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 13
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "madkhal-fiqh",
+      "title": "مدخل إلى علم الفقه",
+      "author": "",
+      "category": "fiqh",
+      "original_path": "foqh.pdf",
+      "file_type": "pdf",
+      "pages": 115,
+      "released_chunk_count": 107,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 107,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "replacement_character": 101,
+        "arabic_embedded_digit": 97,
+        "arabic_latin_corruption": 98,
+        "excessive_punctuation_garbage": 4,
+        "malformed_symbols": 70,
+        "unexpected_control_character": 107,
+        "malformed_brace_or_pipe": 98,
+        "bidi_or_invisible_artifact": 6,
+        "unusably_short_fragments": 1919
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 115,
+          "characters": 111779,
+          "chunk_count": 107,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 107,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 101,
+            "arabic_embedded_digit": 97,
+            "arabic_latin_corruption": 98,
+            "excessive_punctuation_garbage": 4,
+            "malformed_symbols": 70,
+            "unexpected_control_character": 107,
+            "malformed_brace_or_pipe": 98,
+            "bidi_or_invisible_artifact": 6,
+            "unusably_short_fragments": 1919
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 3,
+          "characters": 127,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 6
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 3,
+          "characters": 126,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 10
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "rihab-aqidah",
+      "title": "في رحاب العقيدة",
+      "author": "",
+      "category": "aqeedah",
+      "original_path": "aqida.pdf",
+      "file_type": "pdf",
+      "pages": 261,
+      "released_chunk_count": 236,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 236,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "replacement_character": 214,
+        "arabic_embedded_digit": 222,
+        "arabic_latin_corruption": 223,
+        "malformed_brace_or_pipe": 228,
+        "malformed_symbols": 198,
+        "unexpected_control_character": 236,
+        "bidi_or_invisible_artifact": 81,
+        "excessive_punctuation_garbage": 18,
+        "unusably_short_fragments": 5305
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 228,
+          "characters": 241949,
+          "chunk_count": 236,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 236,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 214,
+            "arabic_embedded_digit": 222,
+            "arabic_latin_corruption": 223,
+            "malformed_brace_or_pipe": 228,
+            "malformed_symbols": 198,
+            "unexpected_control_character": 236,
+            "bidi_or_invisible_artifact": 81,
+            "excessive_punctuation_garbage": 18,
+            "unusably_short_fragments": 5305
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 2,
+          "characters": 64,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 5
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 2,
+          "characters": 266,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 5
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "madkhal-kalam",
+      "title": "مدخل إلى علم الكلام",
+      "author": "",
+      "category": "kalam",
+      "original_path": "kalam.pdf",
+      "file_type": "pdf",
+      "pages": 105,
+      "released_chunk_count": 90,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 90,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "replacement_character": 90,
+        "arabic_embedded_digit": 87,
+        "arabic_latin_corruption": 87,
+        "excessive_punctuation_garbage": 4,
+        "unexpected_control_character": 90,
+        "malformed_brace_or_pipe": 86,
+        "unusably_short_fragments": 1767
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 105,
+          "characters": 104416,
+          "chunk_count": 90,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 90,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 90,
+            "arabic_embedded_digit": 87,
+            "arabic_latin_corruption": 87,
+            "excessive_punctuation_garbage": 4,
+            "unexpected_control_character": 90,
+            "malformed_brace_or_pipe": 86,
+            "unusably_short_fragments": 1767
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 3,
+          "characters": 130,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 7
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 3,
+          "characters": 128,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 10
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "dirasat-ilahiyyat",
+      "title": "دراسات في الإلهيات",
+      "author": "",
+      "category": "kalam",
+      "original_path": "dersat_fe_alelaheya.pdf",
+      "file_type": "pdf",
+      "pages": 426,
+      "released_chunk_count": 393,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 393,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "arabic_embedded_digit": 68,
+        "malformed_symbols": 1,
+        "unexpected_control_character": 393,
+        "excessive_punctuation_garbage": 20,
+        "replacement_character": 5,
+        "arabic_latin_corruption": 35,
+        "malformed_brace_or_pipe": 24,
+        "bidi_or_invisible_artifact": 28,
+        "unusably_short_fragments": 8007
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 358,
+          "characters": 402558,
+          "chunk_count": 393,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 393,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "arabic_embedded_digit": 68,
+            "malformed_symbols": 1,
+            "unexpected_control_character": 393,
+            "excessive_punctuation_garbage": 20,
+            "replacement_character": 5,
+            "arabic_latin_corruption": 35,
+            "malformed_brace_or_pipe": 24,
+            "bidi_or_invisible_artifact": 28,
+            "unusably_short_fragments": 8007
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 2,
+          "characters": 268,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "malformed_symbols": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 10
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 2,
+          "characters": 290,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 1,
+            "malformed_symbols": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 13
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "thaqafat-intizar",
+      "title": "ثقافة الانتظار: رؤية جديدة على ضوء هداية القرآن والسنة والعقل",
+      "author": "",
+      "category": "mahdawiyyah",
+      "original_path": "thaqafat_alintethar.pdf",
+      "file_type": "pdf",
+      "pages": 242,
+      "released_chunk_count": 281,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 281,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "malformed_symbols": 1,
+        "unexpected_control_character": 281,
+        "excessive_punctuation_garbage": 9,
+        "malformed_brace_or_pipe": 89,
+        "arabic_embedded_digit": 73,
+        "bidi_or_invisible_artifact": 20,
+        "arabic_latin_corruption": 3,
+        "unusably_short_fragments": 5200
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 208,
+          "characters": 296043,
+          "chunk_count": 281,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 281,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "malformed_symbols": 1,
+            "unexpected_control_character": 281,
+            "excessive_punctuation_garbage": 9,
+            "malformed_brace_or_pipe": 89,
+            "arabic_embedded_digit": 73,
+            "bidi_or_invisible_artifact": 20,
+            "arabic_latin_corruption": 3,
+            "unusably_short_fragments": 5200
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 2,
+          "characters": 289,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "arabic_embedded_digit": 1,
+            "malformed_symbols": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 10
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 2,
+          "characters": 389,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "malformed_symbols": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 10
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "nahj-rasul",
+      "title": "نهج الرسول: القيم الرسالية والإنسانية في حديث رسول الله",
+      "author": "",
+      "category": "hadith",
+      "original_path": "nahj_alrasoul_s.pdf",
+      "file_type": "pdf",
+      "pages": 402,
+      "released_chunk_count": 378,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 378,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "malformed_symbols": 1,
+        "unexpected_control_character": 378,
+        "excessive_punctuation_garbage": 12,
+        "arabic_latin_corruption": 4,
+        "arabic_embedded_digit": 297,
+        "replacement_character": 33,
+        "bidi_or_invisible_artifact": 5,
+        "malformed_brace_or_pipe": 5,
+        "unusably_short_fragments": 8621
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 384,
+          "characters": 331048,
+          "chunk_count": 378,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 378,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "malformed_symbols": 1,
+            "unexpected_control_character": 378,
+            "excessive_punctuation_garbage": 12,
+            "arabic_latin_corruption": 4,
+            "arabic_embedded_digit": 297,
+            "replacement_character": 33,
+            "bidi_or_invisible_artifact": 5,
+            "malformed_brace_or_pipe": 5,
+            "unusably_short_fragments": 8621
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 1,
+          "characters": 36,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 1
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 1,
+          "characters": 37,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 2
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "maaref-islam",
+      "title": "معارف الإسلام",
+      "author": "",
+      "category": "hawza",
+      "original_path": "maaref_alislam_2018.pdf",
+      "file_type": "pdf",
+      "pages": 522,
+      "released_chunk_count": 598,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 598,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "replacement_character": 2,
+        "malformed_symbols": 1,
+        "unexpected_control_character": 598,
+        "excessive_punctuation_garbage": 188,
+        "bidi_or_invisible_artifact": 159,
+        "malformed_brace_or_pipe": 62,
+        "arabic_embedded_digit": 59,
+        "arabic_latin_corruption": 25,
+        "unusably_short_fragments": 9109
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 474,
+          "characters": 625959,
+          "chunk_count": 598,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 598,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 2,
+            "malformed_symbols": 1,
+            "unexpected_control_character": 598,
+            "excessive_punctuation_garbage": 188,
+            "bidi_or_invisible_artifact": 159,
+            "malformed_brace_or_pipe": 62,
+            "arabic_embedded_digit": 59,
+            "arabic_latin_corruption": 25,
+            "unusably_short_fragments": 9109
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 2,
+          "characters": 202,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "malformed_symbols": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 10
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 2,
+          "characters": 310,
+          "chunk_count": 1,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "replacement_character": 1,
+            "malformed_symbols": 1,
+            "unexpected_control_character": 1,
+            "unusably_short_fragments": 10
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "risala-ilmiyya-sayyid-qaid",
+      "title": "الرسالة العلمية للسيد القائد",
+      "author": "",
+      "category": "fiqh",
+      "original_path": "alresala_alilmiya_lilsayyid_alqaed.pdf",
+      "file_type": "pdf",
+      "pages": 706,
+      "released_chunk_count": 1461,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 1480,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "excessive_punctuation_garbage": 36,
+        "unexpected_control_character": 1480,
+        "bidi_or_invisible_artifact": 3,
+        "malformed_brace_or_pipe": 6,
+        "arabic_embedded_digit": 3,
+        "unusably_short_fragments": 19052
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 706,
+          "characters": 1708585,
+          "chunk_count": 1480,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 1480,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "excessive_punctuation_garbage": 36,
+            "unexpected_control_character": 1480,
+            "bidi_or_invisible_artifact": 3,
+            "malformed_brace_or_pipe": 6,
+            "arabic_embedded_digit": 3,
+            "unusably_short_fragments": 19052
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 3,
+          "characters": 10467,
+          "chunk_count": 9,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 9,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "excessive_punctuation_garbage": 9,
+            "unexpected_control_character": 9,
+            "bidi_or_invisible_artifact": 1,
+            "unusably_short_fragments": 120
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 3,
+          "characters": 10383,
+          "chunk_count": 9,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 9,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "excessive_punctuation_garbage": 9,
+            "unexpected_control_character": 9,
+            "bidi_or_invisible_artifact": 2,
+            "unusably_short_fragments": 124
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "minhaj-salihin-1445",
+      "title": "منهاج الصالحين",
+      "author": "",
+      "category": "fiqh",
+      "original_path": "arabic-menhaj-1-1445.pdf",
+      "file_type": "pdf",
+      "pages": 520,
+      "released_chunk_count": 537,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 537,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "excessive_punctuation_garbage": 26,
+        "unexpected_control_character": 537,
+        "arabic_embedded_digit": 4,
+        "malformed_symbols": 6,
+        "unusably_short_fragments": 30454
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 506,
+          "characters": 734402,
+          "chunk_count": 537,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 537,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "excessive_punctuation_garbage": 26,
+            "unexpected_control_character": 537,
+            "arabic_embedded_digit": 4,
+            "malformed_symbols": 6,
+            "unusably_short_fragments": 30454
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 0,
+          "characters": 57,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {}
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 0,
+          "characters": 0,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {}
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "author",
+        "edition",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    },
+    {
+      "source_id": "risala-amaliyya-shirazi",
+      "title": "الرسالة العملية للسيد رضا الشيرازي",
+      "author": "السيد رضا الشيرازي",
+      "category": "fiqh",
+      "original_path": "alresala_alamaleia_alshirazi.pdf",
+      "file_type": "pdf",
+      "pages": 668,
+      "released_chunk_count": 108,
+      "usable_chunk_count": 0,
+      "rejected_chunk_count": 108,
+      "corruption_percentage": 100.0,
+      "corruption_reasons": {
+        "excessive_punctuation_garbage": 79,
+        "unexpected_control_character": 108,
+        "arabic_embedded_digit": 42,
+        "unusably_short_fragments": 4073
+      },
+      "best_extraction_method": "pymupdf",
+      "extraction_methods": {
+        "pymupdf": {
+          "pages_with_text": 426,
+          "characters": 124269,
+          "chunk_count": 108,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 108,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "excessive_punctuation_garbage": 79,
+            "unexpected_control_character": 108,
+            "arabic_embedded_digit": 42,
+            "unusably_short_fragments": 4073
+          }
+        },
+        "pypdf_sample": {
+          "pages_with_text": 2,
+          "characters": 11,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 2
+          }
+        },
+        "pdfplumber_sample": {
+          "pages_with_text": 2,
+          "characters": 2,
+          "chunk_count": 0,
+          "usable_chunk_count": 0,
+          "rejected_chunk_count": 0,
+          "corruption_percentage": 100.0,
+          "corruption_reasons": {
+            "unusably_short_fragments": 2
+          }
+        }
+      },
+      "clean_reextraction_possible": false,
+      "better_source_required": true,
+      "source_status": "NEEDS_REPLACEMENT_SOURCE",
+      "human_metadata_review_required": true,
+      "metadata_review_fields": [
+        "subcategory",
+        "edition",
+        "version",
+        "marja",
+        "official_source",
+        "is_current",
+        "review_status"
+      ]
+    }
+  ]
+}

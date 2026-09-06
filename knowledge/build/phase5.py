@@ -45,6 +45,7 @@ _EMBEDDED_DIGIT = re.compile(rf"(?<=[{_ARABIC}])\d+(?=[{_ARABIC}])")
 _ARABIC_LATIN = re.compile(rf"(?<=[{_ARABIC}])[A-Za-z]+(?=[{_ARABIC}])")
 _MALFORMED_MARKER = re.compile(r"[{}|]")
 _EXCESSIVE_GARBAGE = re.compile(r"[.\-_=*]{12,}")
+_MALFORMED_SYMBOL = re.compile(r"[@#$~`]")
 _BIDI_OR_INVISIBLE = frozenset({
     "\u200b", "\u200c", "\u200d", "\u200e", "\u200f", "\u202a", "\u202b",
     "\u202c", "\u202d", "\u202e", "\u2066", "\u2067", "\u2068", "\u2069",
@@ -102,6 +103,8 @@ def corruption_reasons(text: str, *, minimum_chars: int = 80) -> list[str]:
         reasons.append("bidi_or_invisible_artifact")
     if _EXCESSIVE_GARBAGE.search(value):
         reasons.append("excessive_punctuation_garbage")
+    if _MALFORMED_SYMBOL.search(value):
+        reasons.append("malformed_symbols")
     visible = "".join(char for char in value if not char.isspace())
     if len(visible) < minimum_chars:
         reasons.append("very_short_passage")
