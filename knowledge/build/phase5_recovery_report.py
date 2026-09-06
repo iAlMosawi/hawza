@@ -42,11 +42,13 @@ def main() -> None:
     p.add_argument("--old-db", required=True)
     p.add_argument("--staging-db", required=True)
     p.add_argument("--output", required=True)
+    p.add_argument("--completeness", required=False)
     args = p.parse_args()
 
     registry = json.loads(Path(args.registry).read_text(encoding="utf-8"))
     recovery = json.loads(Path(args.recovery).read_text(encoding="utf-8"))
     quality = json.loads(Path(args.quality).read_text(encoding="utf-8"))
+    completeness = json.loads(Path(args.completeness).read_text(encoding="utf-8")) if args.completeness else None
     records = {r["source_id"]: r for r in recovery["records"]}
     candidates = {s["source_id"]: s for s in registry["sources"]}
     sources = []
@@ -80,6 +82,7 @@ def main() -> None:
         },
         "old_production_format": {"path": args.old_db, "metrics": counts(Path(args.old_db))},
         "quality_report": quality,
+        "completeness": completeness,
         "sources": sources,
         "tests": {
             "unittest_discover": "passed (13 tests)",
@@ -121,6 +124,8 @@ def main() -> None:
         "- FTS smoke searches returned results for التوكل, الإمامة, أهل البيت, and الفقه.",
         "- Existing build/unit tests: 13 passed.",
         "- Phase 5 production corruption gate: passed for staging evidence.",
+        f"- Sistani structured recovery: {completeness['total_pages_or_sections']} sections ({completeness['volume_section_counts']}), {completeness['text_chars']} characters, {completeness['ruling_number_count']} ruling-number matches, range {completeness['ruling_min']}–{completeness['ruling_max']}." if completeness else "- Sistani structured recovery evidence was not supplied.",
+        "- Sistani representative beginning/middle/end samples are stored in the JSON report.",
         "- The five blocked sources remain unresolved and were not substituted with uncertain material.",
         "",
         "## Deployment Decision",
