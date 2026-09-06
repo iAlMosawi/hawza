@@ -109,6 +109,20 @@ class OfficialReaderClient:
         self.interval = max(0.5, interval)
         self.retries = max(0, retries)
         self.opener = build_opener(HTTPCookieProcessor(CookieJar()))
+        self.state_path = self.output / "harvest_state.json"
+
+    def _state(self) -> dict:
+        if self.state_path.exists():
+            try:
+                return json.loads(self.state_path.read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                pass
+        return {"records": {}}
+
+    def _save_state(self, state: dict) -> None:
+        temporary = self.state_path.with_suffix(".tmp")
+        temporary.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
+        temporary.replace(self.state_path)
 
     def _request(self, url: str, *, data: dict[str, str] | None = None) -> str:
         body = urlencode(data).encode() if data is not None else None
@@ -151,8 +165,15 @@ class OfficialReaderClient:
                                retrieved_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
         cache_path = self.cache / f"{item['id']}.html"
         try:
-            raw = cache_path.read_text(encoding="utf-8") if cache_path.exists() else self._request(ENDPOINT, data=params)
-            if not cache_path.exists():
+            state = self._state()
+            cached = state.get("records", {}).get(item["id"], {})
+            if cache_path.exists() and cached.get("status") == "ok":
+                raw = cache_path.read_text(encoding="utf-8")
+                if hashlib.sha256(raw.encode()).hexdigest() != cached.get("raw_html_sha256"):
+                    raw = self._request(ENDPOINT, data=params)
+            else:
+                raw = self._request(ENDPOINT, data=params)
+            if not cache_path.exists() or hashlib.sha256(raw.encode()).hexdigest() != cached.get("raw_html_sha256"):
                 cache_path.write_text(raw, encoding="utf-8")
             parser = FragmentParser()
             parser.feed(raw)
@@ -161,9 +182,14 @@ class OfficialReaderClient:
             record.text_sha256 = hashlib.sha256(text.encode()).hexdigest()
             record.text_chars = len(text)
             record.status = "ok" if text else "empty"
+            state.setdefault("records", {})[item["id"]] = asdict(record)
+            self._save_state(state)
         except Exception as error:
             record.status = "failed"
             record.error = str(error)
+            state = self._state()
+            state.setdefault("records", {})[item["id"]] = asdict(record)
+            self._save_state(state)
         return record
 
 
@@ -188,13 +214,16 @@ def main() -> int:
         print(json.dumps({"status": "failed", "error": str(error), "reader_url": READER_URL}, ensure_ascii=False))
         return 2
     selected = select_sample(toc) if args.sample else toc
+    state = client._state()
     records = []
     for index, item in enumerate(selected):
         records.append(asdict(client.fetch_section(csrf, item)))
         if index + 1 < len(selected):
             time.sleep(client.interval)
+    expected_ids = {item["id"] for item in selected}
+    successful_ids = {r["section_id"] for r in records if r["status"] == "ok"}
     result = {
-        "status": "complete" if len(records) == len(selected) and all(r["status"] == "ok" for r in records) else "partial",
+        "status": "complete" if expected_ids == successful_ids else "partial",
         "canonical_source_id": CANONICAL_ID,
         "legacy_alias": LEGACY_ALIAS,
         "reader_url": READER_URL,
@@ -202,6 +231,7 @@ def main() -> int:
         "toc_count": len(toc),
         "selected_count": len(selected),
         "records": records,
+        "failed_section_ids": sorted(expected_ids - successful_ids),
     }
     (args.output / "harvest.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({k: result[k] for k in ("status", "toc_count", "selected_count")}, ensure_ascii=False))

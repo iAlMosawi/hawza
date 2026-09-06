@@ -1,10 +1,11 @@
 import tempfile
 import unittest
+import json
 from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from official_reader_harvest import FragmentParser, ReaderParser, select_sample
+from official_reader_harvest import FragmentParser, OfficialReaderClient, ReaderParser, select_sample
 
 
 class OfficialReaderHarvestTests(unittest.TestCase):
@@ -26,3 +27,21 @@ class OfficialReaderHarvestTests(unittest.TestCase):
         self.assertEqual(sample[0]["id"], "0")
         self.assertEqual(sample[-1]["id"], "531")
 
+    def test_valid_cache_is_reused_without_request(self):
+        with tempfile.TemporaryDirectory() as directory:
+            client = OfficialReaderClient(Path(directory))
+            item = {"id": "1", "title": "مقدمة"}
+            client._request = lambda *args, **kwargs: (_ for _ in ()).throw(AssertionError("redownloaded"))
+            raw = '<div class="rtl">نص عربي سليم</div>'
+            client.cache.joinpath("1.html").write_text(raw, encoding="utf-8")
+            import hashlib, json
+            client.state_path.write_text(json.dumps({"records": {"1": {"status": "ok", "raw_html_sha256": hashlib.sha256(raw.encode()).hexdigest()}}}), encoding="utf-8")
+            self.assertEqual(client.fetch_section("token", item).status, "ok")
+
+    def test_partial_harvest_has_failed_ids_and_is_not_complete(self):
+        with tempfile.TemporaryDirectory() as directory:
+            client = OfficialReaderClient(Path(directory), retries=0)
+            client._request = lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError("offline"))
+            record = client.fetch_section("token", {"id": "missing", "title": "مفقود"})
+            self.assertEqual(record.status, "failed")
+            self.assertIn("missing", json.loads(client.state_path.read_text())["records"])
